@@ -1,0 +1,18 @@
+{
+
+    "API": {
+        "apiRoot": "http://localhost:50007/api"
+    },
+    "Auth": {
+        "userAccessKey": "dmart.user"
+    },
+    "Cache": {
+        "Timeout": 1,
+        "Key": "dmart.cache",
+        "ResetKey": "dmart.20190208"
+    },
+    "Seo": {
+        "gaEnabled": true
+    },
+    "isServed": true
+}

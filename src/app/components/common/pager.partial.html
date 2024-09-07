@@ -1,0 +1,5 @@
+<div class="pager" [class.loading]="loading$ | async">
+   <button class="morelink" *ngIf="isLoadMore" (click)="page($event)" title="{{'show more' | translate:'ShowMore'}}">More</button>
+</div>
+<!-- // for SEO purposes keep a static link of the next page -->
+<a [href]="mimicHref" *shServerRender="true">Next</a>

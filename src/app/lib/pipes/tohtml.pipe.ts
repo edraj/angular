@@ -1,0 +1,16 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'tohtml', standalone: true })
+export class ToHtmlPipe implements PipeTransform {
+
+
+    transform(tohtml: string): string {
+        // search for \r\n and replace with <br>
+        const content = tohtml.replace('\r\n', '<br>');
+
+        // what else
+        return content;
+
+    }
+}
+

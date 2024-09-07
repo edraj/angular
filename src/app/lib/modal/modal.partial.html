@@ -1,0 +1,17 @@
+<!-- default modal -->
+<div class="modal-overlay d-overlay" *ngIf="isVisible$ | async">
+  <div class="modal" role="dialog" aria-labelledby="dialogtitle" tabindex="-1">
+     <div class="modal-header">
+        <h6 class="f6 modal-title" id="dialogtitle">{{ title }}</h6>
+        <button type="button" class="modal-close"  aria-label="Close" (click)="hide()"></button>
+     </div>
+    
+     <div class="modal-body">
+      <ng-content select="[modalcontent]"></ng-content>
+    </div>
+
+    <div class="modal-footer" *ngIf="withFooter">
+      <ng-content select="[modalfooter]"></ng-content>
+    </div>
+  </div>
+</div>
