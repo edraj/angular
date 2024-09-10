@@ -4,8 +4,6 @@
         "baseUrl": "./",
         "outDir": "./out-tsc",
         "forceConsistentCasingInFileNames": true,
-        "strict": false,
-        "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
         "declaration": false,
@@ -13,11 +11,16 @@
         "moduleResolution": "node",
         "importHelpers": true,
         "resolveJsonModule": true,
+        "noImplicitReturns": true,
         "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noUnusedParameters": true,
+        "strictPropertyInitialization": false,
+
+        "strict": false,
         "typeRoots": [
             "node_modules/@types"
         ],
-        "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "skipLibCheck": true,
         "isolatedModules": true,

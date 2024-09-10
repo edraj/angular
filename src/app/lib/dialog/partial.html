@@ -1,12 +1,13 @@
 <div class="modal-overlay d-overlay">
-    <div class="modal" role="dialog" aria-labelledby="dialogtitle" tabindex="-1">
-       <div class="modal-header">
-          <h6 class="f6 modal-title" id="dialogtitle">{{ title }}</h6>
-          <button type="button" class="modal-close" (click)="close()"></button>
-       </div>
-       <div class="modal-body">
-          <ng-content></ng-content>
-       </div>
+  <div class="modal" role="dialog" aria-labelledby="dialogtitle" tabindex="-1">
+      <div class="modal-header">
+        <h6 class="f6 modal-title" id="dialogtitle">{{ options?.title }}</h6>
+        <!-- FIXME: style this -->
+        <button type="button" class="modal-close" (click)="close()"></button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
 
-    </div>
   </div>
+</div>

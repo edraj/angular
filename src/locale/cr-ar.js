@@ -1,15 +1,4 @@
 
-// TODO: make use of this
-function getCountry() {
-   if (window) {
-      const _country = document.cookie.split(';').find(n => n.indexOf('country') > -1);
-      if (_country) {
-         return _country.split('=')[1];
-      }
-   }
-   return 'JO';
-}
-
 // make it run on both platforms
 (function (global) {
 
@@ -19,7 +8,7 @@ function getCountry() {
 
    if (window != null) {
       // in browser platform
-      const script = document.dmeateElement('script');
+      const script = document.createElement('script');
       script.type = 'text/javascript';
       script.defer = true;
       script.src = `locale/${_LocaleId}.js`;
@@ -77,15 +66,15 @@ function getCountry() {
       // endinject
    };
 
-   global.dm = global.dm || {};
-   global.dm.resources = {
+   global.cr = global.cr || {};
+   global.cr.resources = {
       language: _Language,
       keys,
       localeId: _LocaleId
    }
 
    // for nodejs
-   global.dm[_Language] = global.dm.resources;
+   global.cr[_Language] = global.cr.resources;
 
 
 

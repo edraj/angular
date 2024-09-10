@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'dm-stars',
+    selector: 'cr-stars',
     template: `<span class="stars-outer"><span class="stars-inner {{starCss}}" [style.width]="raterounded"></span></span>`,
     styleUrls: ['./stars.less'],
     encapsulation: ViewEncapsulation.None,

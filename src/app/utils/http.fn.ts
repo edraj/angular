@@ -1,9 +1,9 @@
-import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpContextToken, HttpContext } from '@angular/common/http';
+import { HttpContext, HttpContextToken, HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { shareReplay, map, finalize } from 'rxjs';
-import { debug, catchAppError } from './rxjs.operators';
-import { ConfigService } from '../utils/config.service';
+import { finalize, map, shareReplay } from 'rxjs';
 import { LoaderState } from '../lib/loader/loader.state';
+import { ConfigService } from './config.service';
+import { catchAppError, debug } from './rxjs.operators';
 
 // if standalone use this instead of http.ts
 
@@ -18,7 +18,7 @@ export const applyContext = (src: string) => {
 
 const getHeaders = (reqheaders: HttpHeaders): any => {
    //  authorization here
-   let headers: any = {};
+   let headers: any = {...reqheaders};
 
 
    return headers;

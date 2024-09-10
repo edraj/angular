@@ -1,12 +1,12 @@
 // classes directive, mostly upon intersection
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Input,
-  AfterViewInit,
   EventEmitter,
-  Output,
-  OnDestroy
+  Input,
+  OnDestroy,
+  Output
 } from '@angular/core';
 import { Platform } from '../../services/core/platform.service';
 

@@ -1,19 +1,19 @@
-import { Observable } from 'rxjs';
-import { finalize, shareReplay, map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
 import {
-    HttpEvent,
-    HttpInterceptor,
-    HttpHandler,
-    HttpRequest,
-    HttpResponse,
-    HttpHeaders,
+    HttpContext,
     HttpContextToken,
-    HttpContext
+    HttpEvent,
+    HttpHandler,
+    HttpHeaders,
+    HttpInterceptor,
+    HttpRequest,
+    HttpResponse
 } from '@angular/common/http';
-import { catchAppError, debug } from './rxjs.operators';
-import { ConfigService } from '../utils/config.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { finalize, map, shareReplay } from 'rxjs/operators';
 import { LoaderState } from '../lib/loader/loader.state';
+import { ConfigService } from './config.service';
+import { catchAppError, debug } from './rxjs.operators';
 
 // create a context token
 const LOADING_SOURCE = new HttpContextToken<string>(() => '');

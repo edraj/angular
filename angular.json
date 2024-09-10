@@ -15,63 +15,28 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "dm",
+      "prefix": "cr",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
-            "index": "src/placeholder.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "styles": [
-              {
-                "input": "src/assets/css/dmart.critical.css",
-                "bundleName": "critical",
-                "inject": false
-              },
-              {
-                "input": "src/assets/css/dmart.general.css",
-                "bundleName": "styles",
-                "inject": false
-              }
-            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./rawless/less", "./node_modules/shut/src/less"]
+              "includePaths": [
+                "./rawless/less",
+                "./node_modules/shut/src/less"
+              ]
             },
             "scripts": [
               {
                 "input": "src/assets/js/dmart.js",
                 "bundleName": "dmart"
-              }
-            ],
-            "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "src",
-                "output": "/"
-              },
-              {
-                "glob": "images/**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "*.js",
-                "input": "src/locale",
-                "output": "/locale"
-              },
-              {
-                "glob": "*.json",
-                "input": "configs",
-                "output": "/localdata"
-              },
-              {
-                "glob": "*.json",
-                "input": "localdata",
-                "output": "/localdata"
               }
             ]
           },
@@ -88,22 +53,37 @@
                   "input": "src/assets/css/dmart.css",
                   "bundleName": "styles"
                 }
-              ]
-            },
-            "serveProduction": {
-              "namedChunks": true,
-              "optimization": false,
-              "aot": true,
-              "sourceMap": true,
-              "index": "src/index.dev.prod.html",
-              "fileReplacements": [
+              ],
+              "assets": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "glob": "favicon.ico",
+                  "input": "src",
+                  "output": "/"
+                },
+                {
+                  "glob": "images/**/*",
+                  "input": "src/assets",
+                  "output": "/assets"
+                },
+                {
+                  "glob": "*.js",
+                  "input": "src/locale",
+                  "output": "/locale"
+                },
+                {
+                  "glob": "*.json",
+                  "input": "configs",
+                  "output": "/localdata"
+                },
+                {
+                  "glob": "*(ar-JO|en).js",
+                  "input": "node_modules/@angular/common/locales/global",
+                  "output": "/locale"
                 }
               ]
             },
             "production": {
+              "index": "src/placeholder.html",
               "outputPath": "../host/client/",
               "fileReplacements": [
                 {
@@ -137,7 +117,25 @@
                   "glob": "*.js",
                   "input": "src/locale",
                   "output": "/locale"
+                },
+                {
+                  "glob": "*(ar-JO|en).js",
+                  "input": "node_modules/@angular/common/locales/global",
+                  "output": "/locale"
                 }
+              ],
+              "styles": [
+                {
+                  "input": "src/assets/css/dmart.css",
+                  "bundleName": "styles",
+                  "inject": false
+                },
+                {
+                  "input": "src/assets/css/dmart.rtl.css",
+                  "bundleName": "styles.rtl",
+                  "inject": false
+                }
+                
               ],
               "budgets": [
                 {
@@ -157,7 +155,6 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-
           "configurations": {
             "production": {
               "buildTarget": "dmartweb:build:serveProduction"

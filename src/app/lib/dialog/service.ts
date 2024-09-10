@@ -1,12 +1,13 @@
+import { DOCUMENT } from '@angular/common';
 import { ApplicationRef, EmbeddedViewRef, Inject, Injectable, Injector, StaticProvider, Type, createComponent } from '@angular/core';
 import { DialogPartialComponent } from './partial';
-import { DOCUMENT } from '@angular/common';
 
 export interface IDialogOptions<T = any> {
   title?: string,
   data?: T,
   css?: string,
   id?: string,
+  ismodal?: boolean,
   onclose?: (res: any) => void;
   providers?: StaticProvider[];
 }
@@ -66,12 +67,12 @@ export class DialogService<T = any>  {
     this.appRef.attachView(componentRef.hostView);
 
 
-    // assign title
-    componentRef.instance.title = options?.title || '';
-    // componentRef.instance.css = options?.css || '';
+    // assign all options
+    componentRef.instance.options = {...options, ismodal: options?.ismodal || false, title: options?.title || '' };
 
     childRef.instance.data = options?.data;
     childRef.instance.dialog = componentRef.instance;
+    childRef.instance.dialogElement = dialogElement; // NEW: why not pass the dialog element
 
 
 

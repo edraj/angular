@@ -1,8 +1,8 @@
-import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Config } from '../utils/config';
-import { map, catchError } from 'rxjs/operators';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Config } from './config';
 import { IConfig } from './config.model';
 
 
@@ -58,7 +58,7 @@ export class ConfigService {
 
 
         return this.http.get(this._getUrl).pipe(
-            map((response) => {
+            map((response: any) => {
                 this.NewInstance(response, false);
                 // also state that it has been isServed
 
@@ -67,7 +67,7 @@ export class ConfigService {
                 // here next
                 return true;
             }),
-            catchError((error) => {
+            catchError((error: any) => {
                 // if in error, return set fall back from environment
                 // make it served, if you want to distinguish error, create another flag
                 this.NewInstance(Config, true);

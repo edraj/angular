@@ -1,7 +1,7 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler } from '@angular/core';
-import { configFactory, ConfigService } from '../utils/config.service';
-import { DmartErrorHandler } from '../utils/error.service';
+import { configFactory, ConfigService } from './config.service';
+import { DmartErrorHandler } from './error.service';
 import { DmartInterceptorFn } from './http.fn';
 import { LocalInterceptorFn } from './local.fn';
 

@@ -1,22 +1,25 @@
-import { Component, ChangeDetectionStrategy, EventEmitter, Output, ViewEncapsulation, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output, ViewEncapsulation } from '@angular/core';
+import { IDialogOptions } from './service';
 
 @Component({
-   selector: 'nv-dialog-partial',
+    selector: 'cr-dialog',
    templateUrl: './partial.html',
    changeDetection: ChangeDetectionStrategy.OnPush,
-   encapsulation: ViewEncapsulation.None
+   encapsulation: ViewEncapsulation.None,
+   standalone: true,
+   imports: [CommonModule]
 })
 export class DialogPartialComponent {
 
    @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
-
-   title: string = '';
-   // remove css, where are my fields
+   public options: IDialogOptions<any>;
 
    public close(data?: any): void {
       this.onClose.emit(data);
    }
+
 
 
    @HostListener('click', ['$event.target'])
@@ -32,5 +35,17 @@ export class DialogPartialComponent {
            this.close(null);
        }
    }
+
+
+   // so unfortunate! when click begins on one element and ends on a different element,
+   // browser registers a full click on the shared parent.
+   // to prevent a by-mistake click and drag, catch an explicit mousedown on the overlay
+   @HostListener('mousedown', ['$event.target'])
+   onMouseDown(target: HTMLElement): void {
+      if (target.matches('.d-overlay, .modal-dialog, .modal') && !this.options.ismodal) {
+         this.close(null);
+      }
+   }
+
 }
 

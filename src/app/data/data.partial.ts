@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { EnumDataType, IData } from '../../data/data.model';
-import { DataService } from '../../data/data.service';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EnumDataType, IData } from './data.model';
+import { DataService } from './data.service';
 
 @Component({
-    selector: 'dm-data',
+    selector: 'cr-data',
     template: `{{ (data$ | async)?.value}}`,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,

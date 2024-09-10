@@ -1,4 +1,4 @@
-import { Config } from '../utils/config';
+import { Config } from '../config';
 
 export interface IListItem {
     id: string;

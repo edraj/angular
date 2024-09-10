@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { Platform } from '../utils/platform.service';
-import { debug } from '../utils/rxjs.operators';
 import { ConfigService } from '../utils/config.service';
-import { ICachedStorage } from './cachedstorage.model';
 import { Res } from '../utils/resources';
+import { debug } from '../utils/rxjs.operators';
+import { ICachedStorage } from './cachedstorage.model';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
 
-    constructor(private platform: Platform, private configService: ConfigService) {
+    constructor( private configService: ConfigService) {
         this._setResetKey();
 
 

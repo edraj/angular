@@ -1,8 +1,8 @@
 // for page state
 import { BehaviorSubject, Observable } from 'rxjs';
-import { clone } from '../utils/common';
-import { debug } from '../utils/rxjs.operators';
-import { IListItem } from '../models/list.model';
+import { IListItem } from '../services/list.model';
+import { clone } from './common';
+import { debug } from './rxjs.operators';
 
 
 export class ListStateService<T extends IListItem>  {

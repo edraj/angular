@@ -13,7 +13,7 @@ export const Config = {
         defaultToastTimeout: 5000
     },
     Res: {
-      cookieName: 'dm-lang', // for netlify it's nf_lang
+      cookieName: 'cr-lang', // for netlify it's nf_lang
       languages: [{name: 'en', display: 'English'}, {name: 'ar', display: 'عربي'}],
       defaultLanguage: 'en' // not maintained
   },

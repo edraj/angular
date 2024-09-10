@@ -10,7 +10,9 @@ export const Config = {
         defaultSize: 25,
         defaultDateFormt: 'DD-MM-YYYY',
         defaultUploadSize: 1048576,
-        defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png']
+        defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png'],
+        lockTimeout: 100
+
     },
     Auth: {
         userAccessKey: 'dmart.user'

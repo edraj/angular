@@ -1,5 +1,5 @@
-import { Directive, OnInit, PLATFORM_ID, Input, inject } from '@angular/core';
 import { NgIf, isPlatformServer } from '@angular/common';
+import { Directive, Input, OnInit, PLATFORM_ID, inject } from '@angular/core';
 
 @Directive({
   selector: '[shServerRender]',
@@ -18,7 +18,7 @@ export class RenderDirective implements OnInit {
   ngOnInit() {
     // if sherverrender is false, do not render on server, if true, serve only on server
     if (isPlatformServer(this.platformId) === this.shServerRender) {
-      this.ngIfDirective.ngIf = true
+      this.ngIfDirective.ngIf = true;
     } else {
       this.ngIfDirective.ngIf = false;
     }
