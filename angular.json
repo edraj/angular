@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "cr",
+      "prefix": "dm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -135,7 +135,7 @@
                   "bundleName": "styles.rtl",
                   "inject": false
                 }
-                
+
               ],
               "budgets": [
                 {

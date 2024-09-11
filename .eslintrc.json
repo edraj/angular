@@ -1,0 +1,73 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "src/**/x*.*",
+    "src/**/x*/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "on",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "varsIgnorePattern": "^_",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": [
+              "Component",
+              "Partial",
+              "Dialog"
+            ]
+          }
+        ],
+        "@angular-eslint/no-output-on-prefix": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "warn",
+        "@angular-eslint/directive-selector": [
+          "warn",
+          {
+            "type": ["attribute", "element"],
+            "prefix": ["dm"],
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": ["dm"],
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

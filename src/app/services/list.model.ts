@@ -5,8 +5,8 @@ export interface IListItem {
 }
 
 export interface IList<T extends IListItem> {
-    matches: T[];
-    total: number;
+    matches: T[]; // records
+    total: number; // attributes.total
 }
 
 
@@ -36,14 +36,6 @@ export class ListOptions {
 
     }
 
-    public static MapSeoOptions(options: IListOptions): any {
-        return {
-            page: options.page || 1
-            // add other options here
-        };
-    }
-
-
 }
 
 export class DataList<T extends IListItem>  {
@@ -53,8 +45,8 @@ export class DataList<T extends IListItem>  {
 
     public NewDataList(dataset: any): IList<T> {
         return {
-            total: dataset.total,
-            matches: dataset.items.map(this.mapper)
+            total: dataset.attribues?.total,
+            matches: dataset.data?.map(this.mapper)
         };
     }
 }

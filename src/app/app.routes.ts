@@ -20,7 +20,6 @@ import {
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
-import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
 import { LoaderState } from './lib/loader/loader.state';
 import { PreloadService } from './utils/preload.service';
@@ -54,7 +53,7 @@ const AppRoutes: Routes = [
 
   {
     path: '',
-    component: MainLayoutComponent,
+    component: SingleLayoutComponent,
     loadChildren: () => import('./routes/public.route').then(m => m.PublicRoutes),
     data: { preload: true }
 

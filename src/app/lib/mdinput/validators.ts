@@ -1,6 +1,6 @@
 export class MdPatterns {
 
-    private static _Patterns = {
+    private static _Patterns: any = {
         'shortname': '[A-Za-z]{5}',
         'phone': '[\\d\\s]*',
         'password': '[\\S]{8,}'

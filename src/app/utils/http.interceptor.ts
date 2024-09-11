@@ -1,8 +1,10 @@
-import { HttpContext, HttpContextToken, HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpContext, HttpContextToken, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { finalize, map, shareReplay } from 'rxjs';
+import { finalize, shareReplay } from 'rxjs';
+import { AuthState } from '../auth/auth.state';
 import { LoaderState } from '../lib/loader/loader.state';
 import { ConfigService } from './config.service';
+import { Res } from './resources';
 import { catchAppError, debug } from './rxjs.operators';
 
 // if standalone use this instead of http.ts
@@ -16,9 +18,17 @@ export const applyContext = (src: string) => {
 };
 
 
-const getHeaders = (reqheaders: HttpHeaders): any => {
+const getHeaders = (): any => {
    //  authorization here
-   let headers: any = {...reqheaders};
+   const authState = inject(AuthState);
+
+   let headers: any = {};
+   const _auth = authState.GetToken();
+
+   if (_auth && _auth !== '') {
+     headers['Authorization'] = `Bearer ${_auth}`;
+   };
+   headers['Accept-Language'] = Res.language;
 
 
    return headers;
@@ -26,6 +36,7 @@ const getHeaders = (reqheaders: HttpHeaders): any => {
 
 // if response wrapped with "data"
 const mapData = (response: any) => {
+
    if (response instanceof HttpResponse) {
 
       // clone body and modify so that "data" is removed as a wrapper
@@ -40,14 +51,13 @@ export const DmartInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, nex
 
    const loaderService = inject(LoaderState);
 
-   if (req.url.indexOf('localdata') > -1 || req.url.indexOf('http') > -1) {
+   if (req.url.indexOf('localdata') > -1) {
       // pass through
       return next(req);
    }
    const url = ConfigService.Config.API.apiRoot + req.url;
 
-
-   const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers)});
+   const adjustedReq = req.clone({ url: url, setHeaders: getHeaders()});
    loaderService.show(req.context.get(LOADING_SOURCE));
 
    if (req.body) {
@@ -57,7 +67,7 @@ export const DmartInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, nex
    return next(adjustedReq)
       .pipe(
          shareReplay(),
-         map(response => mapData(response)),
+        //  map(response => mapData(response)),
          finalize(() => {
             loaderService.hide(req.context.get(LOADING_SOURCE));
          }),

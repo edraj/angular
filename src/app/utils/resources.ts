@@ -4,14 +4,14 @@ import { Config } from './config';
 
 export class LocaleId extends String {
   override toString() {
-    return _global.cr?.resources.localeId || Config.Res.defaultLanguage;
+    return _global.dm?.resources.localeId || Config.Res.defaultLanguage;
   }
 }
 export class RootHref extends String {
   // for browser platform needs to be in constructor
   // this for netlify like, not recomended for expressjs
   constructor() {
-    super('/' + (_global.cr?.resources.language || Config.Res.defaultLanguage));
+    super('/' + (_global.dm?.resources.language || Config.Res.defaultLanguage));
   }
 
 }
@@ -21,11 +21,11 @@ export class Res {
 
 
   private static get keys(): any {
-    return _global.cr?.resources.keys || {NoRes: ''};
+    return _global.dm?.resources.keys || {NoRes: ''};
   }
 
   public static get language(): string {
-    return _global.cr?.resources.language || Config.Res.defaultLanguage;
+    return _global.dm?.resources.language || Config.Res.defaultLanguage;
   }
 
   public static Get(key: string, fallback?: string): string {

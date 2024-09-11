@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { PublicHomeComponent } from '../components/public/home.component';
+import { PublicLoginComponent } from '../components/public/login.component';
 // **gulpimport**
 
 
@@ -9,7 +10,12 @@ export const PublicRoutes: Routes = [
         component: PublicHomeComponent,
         title: 'SITE_NAME'
     }
-    // **gulproute**
+    ,{
+    path: 'login',
+    component: PublicLoginComponent
+}
+
+// **gulproute**
 ];
 
 

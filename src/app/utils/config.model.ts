@@ -17,8 +17,5 @@ export interface IConfig {
       languages?: { name: string, display: string; }[];
       cookieName: string;
    };
-   Seo: {
-      gaEnabled: boolean;
-   };
 
 }

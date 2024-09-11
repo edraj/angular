@@ -1,32 +1,27 @@
-import { Observable } from 'rxjs';
-import { Injectable, Optional, Inject } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angular/common/http';
+import { inject, ProviderToken } from '@angular/core';
 import { Res } from './resources';
 import { debug, catchAppError } from './rxjs.operators';
 
 
-@Injectable()
-export class LocalInterceptor implements HttpInterceptor {
-    constructor(
-        @Optional() @Inject('serverUrl') protected serverUrl: string
-    ) {}
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.indexOf('localdata') < 0) {
-            return next.handle(req);
-        }
+// for standalone use this isntead of of local.interceptor
+export const LocalInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
 
-        // let url = 'http://localhost:1212/en/' + req.url;
-        let url = req.url;
-        if (this.serverUrl) {
-            // on ssr get a full url of current server, this needs to be mapped to express in final app
-            url = `${this.serverUrl}/${Res.language}/${req.url}`;
-        }
+   const serverUrl = inject(<ProviderToken<unknown>><unknown>'serverUrl', {optional: true});
 
-        const adjustedReq = req.clone({ url: url });
-        return next
-            .handle(adjustedReq).pipe(
-                debug(`${req.method} ${req.urlWithParams}`, 'p'),
-                catchAppError(`${req.method} ${req.urlWithParams}`)
-            );
-    }
+   if (req.url.indexOf('localdata') < 0) {
+      return next(req);
+  }
+
+  let url = req.url;
+  if (serverUrl) {
+      // on ssr get a full url of current server, this needs to be mapped to express in final app
+      url = `${serverUrl}/${Res.language}/${req.url}`;
+   }
+
+  const adjustedReq = req.clone({ url: url });
+  return next(adjustedReq).pipe(
+          debug(`${req.method} ${req.urlWithParams}`, 'p'),
+          catchAppError(`${req.method} ${req.urlWithParams}`)
+      );
 }

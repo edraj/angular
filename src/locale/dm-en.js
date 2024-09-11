@@ -89,15 +89,15 @@
       // endinject
    };
 
-   global.cr = global.cr || {};
-   global.cr.resources = {
+   global.dm = global.dm || {};
+   global.dm.resources = {
       language: _Language,
       keys,
       localeId: _LocaleId
    }
 
    // for nodejs
-   global.cr[_Language] = global.cr.resources;
+   global.dm[_Language] = global.dm.resources;
 
 
 

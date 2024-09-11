@@ -1,0 +1,30 @@
+<div class="singlepage">
+    <div class="container">
+        <form [formGroup]="loginForm" (submit)="login()" novalidate [class.was-validated]="forceValidation">
+            <h2 class="f5 doublespaced weight-bold">{{'Login' | translate:'LOGIN'}}</h2>
+
+            <div class="doublespaced">
+              <md-input placeholder="{{'Username' | translate:'USERNAME'}}">
+                <input type="text" id="username" class="md-input w100" mdinput formControlName="username"
+                       [required]="true" autocomplete="username" />
+              </md-input>
+
+            </div>
+            <div class="doublespaced">
+              <md-input placeholder="{{'Password' | translate:'PASSWORD'}}">
+                <input type="password" id="current-password" autofocus autocomplete="current-password" class="md-input w100" mdinput [required]="true" formControlName="password" #password />
+              </md-input>
+            </div>
+
+
+            <div>
+              <button type="submit" class="btn-rev btn-colored w100 btn-large">{{"Sign in" | translate:"SIGN_IN"}}</button>
+            </div>
+
+            <div class="breath">
+              {{"New user?" | translate:'REGISTER_QUESTION'}}
+              <a class="weight-bold" routerLink="/register" >{{'Register' | translate:'REGISTER'}}</a>.
+             </div>
+          </form>
+    </div>
+</div>

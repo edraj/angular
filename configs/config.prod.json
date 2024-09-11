@@ -11,8 +11,5 @@
         "Key": "dmart.cache",
         "ResetKey": "dmart.20190208"
     },
-    "Seo": {
-        "gaEnabled": true
-    },
     "isServed": true
 }

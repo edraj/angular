@@ -4,8 +4,6 @@ import { environment } from '../environments/environment';
 export const Config = {
     isServed: false,
     Basic: {
-        language: resources.language,
-        country: resources.country,
         defaultRoute: '/',
         defaultSize: 25,
         defaultDateFormt: 'DD-MM-YYYY',
@@ -14,22 +12,31 @@ export const Config = {
         lockTimeout: 100
 
     },
+    Res: {
+      languages: [{ name: 'en', display: 'English' }, { name: 'ar', display: 'عربي' }],
+      defaultLanguage: 'en'
+    },
     Auth: {
-        userAccessKey: 'dmart.user'
+        userAccessKey: 'dmart.user',
+        redirectKey: 'redirectUrl',
+        loginRoute: '/login',
     },
     Cache: {
         Timeout: 1,
-        Key: 'dmart.cache.' + resources.language,
-        ResetKey: 'dmart.20190208'
-    },
-    Seo: {
-        gaEnabled: true
+        Key: 'dmart.cache',
+        ResetKey: 'dmart.20240101'
     },
     API: {
         apiRoot: environment.apiRoot,
         apiVersion: 1,
         data: {
             notdefined: '/data/notdefined'
+        },
+        auth: {
+          login: '/user/login'
+        },
+        profile: {
+            details: '/api/services/app/Profile/GetProfile'
         },
         config: {
             local: environment.localConfig

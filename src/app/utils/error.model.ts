@@ -15,6 +15,7 @@ export const UiError = (error: any): IUiError => {
         status: 0
     };
 
+    _attn(error, 'error');
     if (error instanceof HttpErrorResponse) {
         // map general error
         e.message = error.message || '';

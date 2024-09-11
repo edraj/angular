@@ -1,10 +1,10 @@
 import { ApplicationRef, createComponent, EmbeddedViewRef, Injectable } from '@angular/core';
 import { Observable, of, Subscription, throwError, timer } from 'rxjs';
-import { IToastButton, IToast, EnumTimeout } from './toast.model';
-import { ToastPartialComponent } from './toast.partial';
-import { StateService } from '../../utils/state.abstract';
-import { Res } from '../../utils/resources';
 import { IUiError } from '../../utils/error.model';
+import { Res } from '../../utils/resources';
+import { StateService } from '../../utils/state.abstract';
+import { EnumTimeout, IToast, IToastButton } from './toast.model';
+import { ToastPartialComponent } from './toast.partial';
 
 @Injectable({ providedIn: 'root' })
 export class Toast extends StateService<IToast> {
@@ -30,7 +30,7 @@ export class Toast extends StateService<IToast> {
    public dismissButton: IToastButton = {
       css: 'btn-close',
       text: Res.Get('Dismiss'),
-      click: (event: MouseEvent) => {
+      click: (_: MouseEvent) => {
          this.Hide();
       }
    };
