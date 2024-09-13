@@ -1,0 +1,13 @@
+<div class="page">
+    <div class="container">
+      @let spaces = spaces$ | async;
+
+        <ul class="rowlist" *ngIf="spaces">
+          @for (item of spaces.matches; track $index) {
+            <li>
+              {{ item | json }}
+            </li>
+          }
+        </ul>
+    </div>
+</div>

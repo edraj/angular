@@ -8,23 +8,6 @@ export const _global: any = typeof globalThis !== 'undefined' && globalThis || t
 
 
 
-export const toPrettyPrice = (s: string) => {
-  const ret = Number(s.replace(/,/gi, ''));
-  if (isNaN(ret)) { return s; }
-  // read number, tofixed of 2 digits, insert "," in every three digits, if its already fixed, unfix first
-
-  const _ret = ret.toFixed(2),
-      x = _ret.toString().split('.'),
-      x2 = x.length > 1 ? '.' + x[1] : '',
-      rgx = /(\d+)(\d{3})/;
-
-  let x1 = x[0];
-
-  while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + ',' + '$2');
-  }
-  return x1 + x2;
-};
 export const GetParamsAsString = (urlParams: any, joinArray = false): string => {
   const s = new URLSearchParams();
 
@@ -53,6 +36,17 @@ export const GetParamsAsString = (urlParams: any, joinArray = false): string => 
   return s.toString();
 
 };
+
+export const parseJwt =  (token: string): any => {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
 export const toFormat = (s:string, ...args: any) => {
   const regExp = /\$(\d+)/gi;
   // match $1 $2 ...
@@ -141,7 +135,7 @@ const getRegExpFlags = (regExp: any) => {
   if (typeof regExp.source.flags == 'string') {
     return regExp.source.flags;
   } else {
-    var flags = [];
+    const flags = [];
     regExp.global && flags.push('g');
     regExp.ignoreCase && flags.push('i');
     regExp.multiline && flags.push('m');
@@ -155,10 +149,10 @@ export const clone = (obj: any) => {
     return obj;
   }
   const result: any = Array.isArray(obj) ? [] : {};
-  for (var key in obj) {
+  for (const key in obj) {
     // include prototype properties
-    var value = obj[key];
-    var type = {}.toString.call(value).slice(8, -1);
+    const value = obj[key];
+    const type = {}.toString.call(value).slice(8, -1);
     if (type == 'Array' || type == 'Object') {
       result[key] = clone(value);
     } else if (type == 'Date') {
@@ -193,21 +187,21 @@ export const uuid = (): string => {
 
   if (window?.crypto) {
 
-      var buf = new Uint32Array(4);
+      const buf = new Uint32Array(4);
       window.crypto.getRandomValues(buf);
-      var idx = -1;
+      let idx = -1;
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
           idx++;
-          var r = (buf[idx >> 3] >> ((idx % 8) * 4)) & 15;
-          var v = c == 'x' ? r : (r & 0x3 | 0x8);
+          const r = (buf[idx >> 3] >> ((idx % 8) * 4)) & 15;
+          const v = c == 'x' ? r : (r & 0x3 | 0x8);
           return v.toString(16);
       });
 
   } else {
 
-      var dt = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-          var r = (dt + Math.random() * 16) % 16 | 0;
+      let dt = new Date().getTime();
+      const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          const r = (dt + Math.random() * 16) % 16 | 0;
           dt = Math.floor(dt / 16);
           return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
       });

@@ -4,13 +4,9 @@ export interface IProfile {
   firstname?: string;
   lastname?: string;
   email?: string;
+  username?: string;
 }
 
-export interface INewProfile extends IProfile {
-  stage?: number;
-  otp?: string;
-  password?: string;
-}
 
 export class Profile implements IProfile {
   // public id: string;
@@ -19,7 +15,7 @@ export class Profile implements IProfile {
       firstname: profile.FirstName,
       lastname: profile.LastName,
       email: profile.Email,
-
+      username: profile.username
     };
   }
 

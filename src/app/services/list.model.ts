@@ -1,4 +1,3 @@
-import { Config } from '../config';
 
 export interface IListItem {
     id: string;
@@ -23,16 +22,23 @@ export interface IListOptions {
 
 
 export class ListOptions {
-    public static MapSearchListOptions(options: IListOptions): any {
+    public static MapSearchListOptions(_: any): any {
         // map each to its name in db, watch out for arrays
-
         return {
+          type: 'spaces',
+          space_name: 'management',
+          subpath: '/',
+          search: '',
+          limit: 100
+      }
 
-            k: options.keyword,
-            c: options.country,
-            p: options.page || 1,
-            s: options.size || Config.Basic.defaultSize
-        };
+        // return {
+
+        //     k: options.keyword,
+        //     c: options.country,
+        //     p: options.page || 1,
+        //     s: options.size || Config.Basic.defaultSize
+        // };
 
     }
 
@@ -46,7 +52,7 @@ export class DataList<T extends IListItem>  {
     public NewDataList(dataset: any): IList<T> {
         return {
             total: dataset.attribues?.total,
-            matches: dataset.data?.map(this.mapper)
+            matches: dataset.records?.map(this.mapper)
         };
     }
 }

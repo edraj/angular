@@ -1,4 +1,4 @@
-import { IProfile } from './profile.model';
+import { IProfile, Profile } from './profile.model';
 
 
 export interface IAuthInfo {
@@ -13,10 +13,14 @@ export class AuthInfo implements IAuthInfo {
 
 
   public static NewInstance(res: any): IAuthInfo {
-    _attn(res);
+    // decode res.access_token
+    const _res = JSON.parse(atob(res.access_token.split('.')[1]));
+    if (!_res) return null;
+
     return {
       accessToken: res.access_token,
-      expiresAt: Date.now() + (15 * 60 * 1000)
+      expiresAt: _res.expires * 1000,
+      payload: Profile.NewInstance({..._res.data})
     };
   }
 
