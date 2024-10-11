@@ -14,7 +14,7 @@
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "noImplicitOverride": true,
-        "noUnusedParameters": true,
+        "noUnusedParameters": false,
         "strictPropertyInitialization": false,
 
         "strict": false,

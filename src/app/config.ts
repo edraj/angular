@@ -27,6 +27,8 @@ export const Config = {
     ResetKey: 'dmart.20240101'
   },
   API: {
+    rootPath: '__root__/',
+    rootSpace: 'management',
     apiRoot: environment.apiRoot,
     apiVersion: 1,
     data: {
@@ -41,14 +43,24 @@ export const Config = {
     config: {
       local: environment.localConfig
     }
+
+    // later: content from.amanged/payload
+    // managed/resource
     , space: {
+      // query
       list: '/managed/query',
-      details: '/spaces/:id',
+      details: '/managed/entry/space/Ayyash/__root__/Ayyash',
       create: '/spaces', // POST
       save: '/spaces/:id', // PUT
       delete: '/spaces/:id', // DELETE
     }
-
+    , resource: {
+      query: '/managed/query',
+      details: '/managed/entry/:resource/:space/:subpath?:options', // :shortname not needed
+      create: '/resources', // POST
+      save: '/resources/:id', // PUT
+      delete: '/resources/:id', // DELETE
+    }
     // **gulpmodel**
   }
 };

@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="container">
+    @let space = space$ | async;
+    @if (space) {
+    <div class="r txt-r">
+      Last updated: {{ space.updated | date }} <br>
+      <span class="smaller">Created {{ space.created | date }}</span>
+    </div>
+    <h1>{{ space.displayname }}</h1>
+    {{ space.shortname }}
+    <div class="spaced light">
+      {{ space.description }}
+    </div>
+
+    <div class="row-spaced">
+      <div class="c-4">
+        <dm-resource-list [space]="space.shortname" (onSelect)="openContent($event)"></dm-resource-list>
+      </div>
+      <div class="c-8">
+        content only?
+      </div>
+    </div>
+    }
+  </div>
+</div>

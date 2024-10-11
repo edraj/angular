@@ -1,13 +1,22 @@
 <div class="page">
-    <div class="container">
-      @let spaces = spaces$ | async;
+  <div class="container">
 
-        <ul class="rowlist" *ngIf="spaces">
+      @let spaces = spaces$ | async;
+        <ul class="row-spaced uc-6 rowlist" *ngIf="spaces">
           @for (item of spaces.matches; track $index) {
-            <li>
-              {{ item | json }}
-            </li>
+          <li>
+            <div class="card">
+              <div>
+                <a class="weight-bold" routerLink="/spaces/{{ item.shortname }}">{{ item.displayname }}</a>
+                <div class="smaller light">{{ item.shortname }} {{ item.description }}</div>
+              </div>
+              <div class="tail smaller">
+                {{ item.updated | date:'shortDate' }}
+              </div>
+            </div>
+          </li>
           }
         </ul>
-    </div>
+
+  </div>
 </div>

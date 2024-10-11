@@ -66,6 +66,13 @@ const AppRoutes: Routes = [
     data: { preload: true, delay: true }
 
   },
+  {
+    path: 'test',
+    component: MainLayoutComponent,
+    loadChildren: () => import('./routes/test.route').then(m => m.TestRoutes),
+    data: { preload: true, delay: true }
+
+  },
 
   // **gulproute**
   {

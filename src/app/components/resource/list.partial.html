@@ -1,0 +1,13 @@
+@let resources = resources$ | async;
+@if (resources) {
+  <!-- <pre>{{ resources | json }}</pre> -->
+  <ul class="alist lbreath">
+    @for (item of resources; track $index) {
+      <li>
+        <dm-resource-card [resource]="item" (onSelect)="select(item)" (onToggle)="toggle(item)"></dm-resource-card>
+        <!-- keep the shortname of the root, build the subpath -->
+        <dm-resource-list *ngIf="item.expanded" [space]="space" [resource]="item"></dm-resource-list>
+      </li>
+    }
+  </ul>
+}

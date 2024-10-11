@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Config } from '../config';
-import { ApiResponse } from '../services/response.model';
+import { ApiResponse } from '../models/response.model';
 import { AuthInfo, IAuthInfo } from './auth.model';
 import { AuthState } from './auth.state';
 

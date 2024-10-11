@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IList } from '../../services/list.model';
-import { ISpace } from '../../services/space.model';
+import { IList } from '../../models/list.model';
+import { IResource } from '../../models/resource.model';
 import { SpaceService } from '../../services/space.service';
 @Component({
 
@@ -14,13 +14,13 @@ import { SpaceService } from '../../services/space.service';
 })
 export class SpaceListComponent implements OnInit {
 
-  spaces$: Observable<IList<ISpace>>;
+  spaces$: Observable<IList<IResource>>;
 
   constructor(private spaceService: SpaceService) {
     //
   }
   ngOnInit(): void {
 
-    this.spaces$ = this.spaceService.RealGetSpaces();
+    this.spaces$ = this.spaceService.GetSpaces();
   }
 }

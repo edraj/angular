@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Platform } from '../../utils/platform.service';
 
 @Component({
-  selector: 'cr-modal',
+  selector: 'dm-modal',
   templateUrl: './modal.partial.html',
   standalone: true,
   imports: [CommonModule]

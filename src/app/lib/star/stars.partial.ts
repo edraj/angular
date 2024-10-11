@@ -1,9 +1,13 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    OnInit,
+    ViewEncapsulation
 } from '@angular/core';
 
 @Component({
-    selector: 'cr-stars',
+    selector: 'dm-stars',
     template: `<span class="stars-outer"><span class="stars-inner {{starCss}}" [style.width]="raterounded"></span></span>`,
     styleUrls: ['./stars.less'],
     encapsulation: ViewEncapsulation.None,

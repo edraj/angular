@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output,
 import { IDialogOptions } from './service';
 
 @Component({
-    selector: 'cr-dialog',
+    selector: 'dm-dialog',
    templateUrl: './partial.html',
    changeDetection: ChangeDetectionStrategy.OnPush,
    encapsulation: ViewEncapsulation.None,

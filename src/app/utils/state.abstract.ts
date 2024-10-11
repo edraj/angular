@@ -1,6 +1,6 @@
 // for page state
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IListItem } from '../services/list.model';
+import { IListItem } from '../models/list.model';
 import { clone } from './common';
 import { debug } from './rxjs.operators';
 

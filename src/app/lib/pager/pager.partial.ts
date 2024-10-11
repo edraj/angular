@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewEncapsulation,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { LoaderState } from '../loader/loader.state';
 import { TranslatePipe } from '../pipes/translate.pipe';
 
  @Component({
-   selector: 'cr-pager',
+   selector: 'dm-pager',
    template: `
      <div class="pager" [class.loading]="loading$ | async">
          <button class="btn-fake" *ngIf="isLoadMore" (click)="page($event)" title="{{'show more' | translate:'ShowMore'}}">More</button>
@@ -47,5 +47,5 @@ import { TranslatePipe } from '../pipes/translate.pipe';
      this.onPage.emit({event, source: this.source});
    }
 
-  
+
  }

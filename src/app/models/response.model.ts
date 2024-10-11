@@ -36,15 +36,4 @@ export class ApiResponse {
     // };
   }
 
-  static NewListInstance(data: any): any {
-    let _records = data.records || null;
-
-
-    return {
-      status: data.status,
-      error: data.error,
-      data: _records?.map((n: any) => n.attributes),
-      attributes: data.attributes
-    };
-  }
 }

@@ -5,17 +5,17 @@ import { PublicLoginComponent } from '../components/public/login.component';
 
 
 export const PublicRoutes: Routes = [
-    {
-        path: '',
-        component: PublicHomeComponent,
-        title: 'SITE_NAME'
-    }
-    ,{
+  {
+    path: '',
+    component: PublicHomeComponent,
+    title: 'SITE_NAME'
+  }
+  , {
     path: 'login',
     component: PublicLoginComponent
-}
+  }
 
-// **gulproute**
+  // **gulproute**
 ];
 
 

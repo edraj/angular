@@ -5,7 +5,7 @@
 
 @rem-enabled: true;
 @enable-rounded: true;
-@enable-icon-font: false;
+@enable-icon-font: true;
 @enable-res-fonts: true; // allow scaling of fonts to change for smaller screens
 
 @icon-font: "dmart";
@@ -37,11 +37,7 @@
     smaller: 0.8;
 }
 
-;
-
 @custom-font-multiplier: {}
-
-;
 
 @font-weight-light: 300;
 @font-weight: 400;
@@ -55,9 +51,6 @@
     medium: @font-weight-medium;
     bold: @font-weight-bold;
 }
-
-;
-
 
 // colors
 @text-color: #202020; // basic text color
@@ -102,8 +95,6 @@
     grey-dark: @grey-dark;
 }
 
-;
-
 @front-color-contrast: 43%;
 
 // table colors
@@ -137,8 +128,6 @@
         0 6px 30px 5px rgba(@black, 0.12), 0 8px 10px -5px rgba(@black, 0.3);
 }
 
-;
-
 // breakpoints
 @screen: {
     xs: 480px; // special cases
@@ -148,8 +137,6 @@
     xl: 1280px; // more popular small desktop, KEEP
     ds: 1600px; // up above desktop
 }
-
-;
 
 // content padding
 @mainpad: @space;
