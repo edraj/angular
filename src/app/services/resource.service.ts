@@ -41,10 +41,7 @@ export class ResourceService {
   GetResource(options: IListOptions = {}): Observable<IResource> {
     const params = GetParamsAsString(ListOptions.MapEntryListOptions({withPayload: true, ...options}));
 
-    const _url = Config.API.resource.details
-      .replace(':resource', options.resource || 'folder')
-      .replace(':space', options.space)
-      .replace(':subpath', options.subpath)
+    const _url = ListOptions.MapResourceUrlListOptions(Config.API.resource.details, options)
       .replace(':options', params);
 
     // /managed/entry/:resource/:space/:subpath/:shortname

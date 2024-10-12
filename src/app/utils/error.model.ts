@@ -7,6 +7,15 @@ export interface IUiError {
     status?: number;
     uiMessage?: string;
 }
+/*
+  "error": {
+    "type": "string",
+    "code": 0,
+    "message": "string",
+    "info": [
+      {}
+    ]
+  },*/
 
 export const UiError = (error: any): IUiError => {
     let e: IUiError = {
@@ -15,7 +24,6 @@ export const UiError = (error: any): IUiError => {
         status: 0
     };
 
-    _attn(error, 'error');
     if (error instanceof HttpErrorResponse) {
         // map general error
         e.message = error.message || '';

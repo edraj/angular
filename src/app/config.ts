@@ -27,7 +27,7 @@ export const Config = {
     ResetKey: 'dmart.20240101'
   },
   API: {
-    rootPath: '__root__/',
+    rootPath: '__root__',
     rootSpace: 'management',
     apiRoot: environment.apiRoot,
     apiVersion: 1,
@@ -35,10 +35,10 @@ export const Config = {
       notdefined: '/data/notdefined'
     },
     auth: {
-      login: '/user/login'
+      login: '/user/login',
     },
     profile: {
-      details: '/api/services/app/Profile/GetProfile'
+      details: '/user/profile'
     },
     config: {
       local: environment.localConfig

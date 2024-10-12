@@ -72,6 +72,15 @@ export class ListOptions {
     };
   }
 
+  static MapResourceUrlListOptions(url: string, options: IListOptions): string {
+
+    return url
+      .replace(':resource', options.resource || EnumResourceType.CONTENT)
+      .replace(':space', options.space)
+      // bummer, __root__ is used for subpath here, not space
+      .replace(':subpath', options.subpath);
+  }
+
 
 
 

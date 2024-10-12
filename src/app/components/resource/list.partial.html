@@ -6,7 +6,7 @@
       <li>
         <dm-resource-card [resource]="item" (onSelect)="select(item)" (onToggle)="toggle(item)"></dm-resource-card>
         <!-- keep the shortname of the root, build the subpath -->
-        <dm-resource-list *ngIf="item.expanded" [space]="space" [resource]="item"></dm-resource-list>
+        <dm-resource-list *ngIf="item.expanded" [space]="space" [resource]="item" (onSelect)="select($event)"></dm-resource-list>
       </li>
     }
   </ul>

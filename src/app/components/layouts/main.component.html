@@ -3,6 +3,9 @@
         <ul class="boxed row">
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/spaces">Spaces</a></li>
+            <li class="lauto" *ngIf="profile$ | async as profile"><a routerLink="/profile">{{ profile.payload.username }}</a>
+              <a class="smaller" (click)="logout()">(Logout)</a>
+            </li>
         </ul>
 
     </nav>

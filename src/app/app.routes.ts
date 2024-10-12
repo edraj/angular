@@ -18,6 +18,7 @@ import {
   withRouterConfig
 } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthCanActivate } from './auth/auth.guard';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
@@ -63,15 +64,23 @@ const AppRoutes: Routes = [
     path: 'spaces',
     component: MainLayoutComponent,
     loadChildren: () => import('./routes/space.route').then(m => m.SpaceRoutes),
-    data: { preload: true, delay: true }
+    data: { preload: true, delay: true },
+    canActivate: [AuthCanActivate],
+
+  },
+  {
+    path: 'profile',
+    component: MainLayoutComponent,
+    loadChildren: () => import('./routes/profile.route').then(m => m.ProfileRoutes),
+    data: { preload: false },
+    canActivate: [AuthCanActivate],
 
   },
   {
     path: 'test',
     component: MainLayoutComponent,
     loadChildren: () => import('./routes/test.route').then(m => m.TestRoutes),
-    data: { preload: true, delay: true }
-
+    data: { preload: false }
   },
 
   // **gulproute**

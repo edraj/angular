@@ -13,6 +13,7 @@ export class AuthInfo implements IAuthInfo {
 
 
   public static NewInstance(res: any): IAuthInfo {
+
     // decode res.access_token
     const _res = JSON.parse(atob(res.access_token.split('.')[1]));
     if (!_res) return null;
@@ -20,7 +21,7 @@ export class AuthInfo implements IAuthInfo {
     return {
       accessToken: res.access_token,
       expiresAt: _res.expires * 1000,
-      payload: Profile.NewInstance({..._res.data})
+      payload: Profile.NewInstance(res) // this has shortname
     };
   }
 

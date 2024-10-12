@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Config } from '../config';
+import { mapResponse } from '../models/response.model';
 import { IAuthInfo } from './auth.model';
 import { AuthState } from './auth.state';
-import { IProfile, Profile } from './profile.model';
+import { Profile } from './profile.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -18,15 +19,14 @@ export class ProfileService {
   }
 
   // get logged in user profile
-  GetProfile(auth: IAuthInfo): Observable<IProfile> {
-    const _url = this._detailsUrl;
-    return this._http.get(_url).pipe(
+  GetProfile(auth: IAuthInfo): Observable<IAuthInfo> {
+    return this._http.get(this._detailsUrl).pipe(
       map(response => {
-        const retProfile = Profile.NewInstance(response);
-        // WATCH: dates become strings
+
+        const retProfile = Profile.NewInstance(mapResponse(response));
         const _auth = { ...auth, payload: retProfile };
         this.authState.SaveSession(_auth);
-        return retProfile;
+        return _auth;
       })
     );
 

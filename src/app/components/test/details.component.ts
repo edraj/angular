@@ -41,23 +41,26 @@ export class TestdetailsComponent implements OnInit {
       limit: 200,
       exact_subpath: true, // this brings one level at a time of folders and content, nothing else.
       // retrieve_json_payload: true, // gets nodes payload
-      filter_types: [ EnumResourceType.CONTENT, EnumResourceType.FOLDER]
+      filter_types: [EnumResourceType.CONTENT, EnumResourceType.FOLDER]
     }).subscribe(d => {
       _attn(d, 'types search');
     });
 
-// /managed/entry/:resource/:space/:subpath/:shortnam
-/* https://api.dmart.cc/managed/entry/space/Ayyash/__root__/Ayyash?retrieve_json_payload=false&retrieve_attachments=false&validate_schema=true */
-// /folder/Ayyash/__root__/pages
-// folder needs space/root/foldername
-// space needs space/root/space
+    // /managed/entry/:resource/:space/:subpath/:shortnam
+    /* https://api.dmart.cc/managed/entry/space/Ayyash/__root__/Ayyash?retrieve_json_payload=false&retrieve_attachments=false&validate_schema=true */
+    // /folder/Ayyash/__root__/pages
+    // folder needs space/root/foldername
+    // space needs space/root/space
 
-// entry/schema/space/schema/shortname
-// entry/content/Ayyash/__root__/text_content2
-// /entry/folder/Ayyash/pages/asd
+    // entry/schema/space/schema/shortname
+    // entry/content/Ayyash/__root__/text_content2
+    // /entry/folder/Ayyash/pages/asd
 
-// schema folders are special folders that have resources SCHEMA only
-// /folder/Ayyash/__root__/schema
-    // this.resourceService.EntryResource(`/managed/entry/folder/Ayyash/pages/asd/mimi`).subscribe(d => _attn(d, 'entry'));
+    // schema folders are special folders that have resources SCHEMA only
+    // /folder/Ayyash/__root__/schema
+    // managed/entry/:resource/:space/:subpath?:options
+    this.resourceService.EntryResource(`/managed/entry/folder/Ayyash/pages/asd/mimi`).subscribe(d => _attn(d, 'entry'));
+
+
   }
 }

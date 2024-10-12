@@ -1,39 +1,9 @@
 
-// export interface IApiResponseRecord {
-//   resource_type: string;
-//   shortname: string;
-//   subpath: string;
-//   attributes: any;
-//   uuid?: string;
-// };
 
-// export interface IApiResponse {
-//   status: 'success' | 'failed';
-//   error?: {
-//     code: string;
-//     info?: string;
-//     message: string;
-//     type: string;
-//   };
-//   records: IApiResponseRecord[];
-//   attributes: any;
-// };
+// general as much as possible
+export const mapResponse = (data: any): any => {
+  let _data = data.records?.length ? data.records[0] : null;
 
-export class ApiResponse {
-  static NewInstance(data: any): any {
-    // any looks like that, extract records for single instance
-    let _data = data.records?.length ? data.records[0] : null;
-    if (_data) {
-      _data = _data.attributes;
-    }
+  return {..._data, ..._data?.attributes};
+};
 
-    return _data;
-    // return {
-    //   status: data.status,
-    //   error: data.error,
-    //   data: _data,
-    //   attributes: data.attributes
-    // };
-  }
-
-}

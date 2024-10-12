@@ -16,9 +16,11 @@
       <div class="c-4">
         <dm-resource-list [space]="space.shortname" (onSelect)="openContent($event)"></dm-resource-list>
       </div>
-      <div class="c-8">
-        content only?
-      </div>
+      @if ( content$ | async; as content  ) {
+        <div class="c-8" >
+          <dm-entry-details [resource]="content"></dm-entry-details>
+        </div>
+      }
     </div>
     }
   </div>

@@ -1,0 +1,19 @@
+<div class="page">
+    <div class="container">
+      @let profile = profile$ | async;
+      <h3 class="f3 spaced">{{ profile.username }}</h3>
+
+      <dl class="grid g-3 spacedout g-bthin">
+        <dt>Type</dt>
+        <dd>{{ profile.type }} <i class="liga" [class.green]="profile.forcePasswordChange">check</i> Force new password</dd>
+        <dt>Email</dt>
+        <dd>{{ profile.email }} <i class="liga" [class.green]="profile.isEmailVerified">check</i> Verified</dd>
+        <dt>Phone</dt>
+        <dd>{{ profile.mobile }} <i class="liga" [class.green]="profile.isMobileVerified">check</i> Verified</dd>
+        <dt>Display name</dt>
+        <dd>{{ profile.displayname }}</dd>
+        <dt>Roles</dt>
+        <dd>{{ profile.roles }}</dd>
+      </dl>
+    </div>
+</div>
