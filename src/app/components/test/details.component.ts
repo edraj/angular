@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Config } from '../../config';
 import { EnumQueryType } from '../../models/list.model';
-import { EnumResourceType } from '../../models/resource.model';
-import { ResourceService } from '../../services/resource.service';
 @Component({
   template: `
     <div  class="container"></div>
@@ -15,7 +16,7 @@ import { ResourceService } from '../../services/resource.service';
 export class TestdetailsComponent implements OnInit {
 
 
-  constructor(private resourceService: ResourceService) {
+  constructor( private _http: HttpClient) {
     //
   }
   ngOnInit(): void {
@@ -33,15 +34,18 @@ export class TestdetailsComponent implements OnInit {
 
     // first: type = "spaced" ignores everything else and gets root spaces, but space_name cannot be empty
     // but it doesnt matter what it has
-    this.resourceService.QueryResource({
+    // to get folder, subpath contains the folder name
+    // to get content, it should in filters_shortnames, lenno its a sub resource
+    this.QueryResource({
       type: EnumQueryType.SEARCH,
       space_name: 'Ayyash', // always root space
-      subpath: '/pages', // starts with / +subpath + / + shortname
+      subpath: '/schema', // starts with / +subpath + / + shortname
       search: '',
       limit: 200,
       exact_subpath: true, // this brings one level at a time of folders and content, nothing else.
-      // retrieve_json_payload: true, // gets nodes payload
-      filter_types: [EnumResourceType.CONTENT, EnumResourceType.FOLDER]
+      retrieve_json_payload: true, // gets nodes payload
+      // filter_types: [EnumResourceType.CONTENT, EnumResourceType.FOLDER]
+      filter_shortnames: ['folder_rendering']
     }).subscribe(d => {
       _attn(d, 'types search');
     });
@@ -59,8 +63,19 @@ export class TestdetailsComponent implements OnInit {
     // schema folders are special folders that have resources SCHEMA only
     // /folder/Ayyash/__root__/schema
     // managed/entry/:resource/:space/:subpath?:options
-    this.resourceService.EntryResource(`/managed/entry/folder/Ayyash/pages/asd/mimi`).subscribe(d => _attn(d, 'entry'));
+    // this.EntryResource(`/managed/entry/folder/Ayyash/__root__/pages`).subscribe(d => _attn(d, 'entry'));
 
 
+  }
+
+  // test urls
+  QueryResource(options: any): Observable<any> {
+
+    return this._http.post(Config.API.resource.query, options);
+  }
+  EntryResource(url: any): Observable<any> {
+
+    // /managed/entry/:resource/:space/:subpath/:shortnam
+    return this._http.get(url);
   }
 }

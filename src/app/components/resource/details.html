@@ -1,0 +1,39 @@
+<div>
+  @let content = resources$ | async;
+  @if (content) {
+  <pre>
+    {{ content | json}}
+  </pre>
+
+  @if (type === 'folder') {
+  <div>
+    <h3>Files</h3>
+    <ul>
+      <li *ngFor="let record of content.matches">
+        <a routerLink="/spaces/{{ record.path }}">{{ record.displayname }}</a>
+      </li>
+    </ul>
+  </div>
+  }
+
+  @if(type === 'content') {
+  @let resource = content.matches[0];
+
+  <div>
+    <h3>{{ resource.displayname }}</h3>
+    <div>{{ resource.description }}</div>
+    @if(resource.contentType === 'json') {
+    <pre>{{ resource.body | json }}</pre>
+    }
+
+    @if(resource.contentType === 'html') {
+    <div [innerHTML]="resource.body"></div>
+
+    }
+  </div>
+
+  }
+
+  }
+
+</div>

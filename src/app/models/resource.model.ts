@@ -1,14 +1,14 @@
-import { Config } from '../config';
 import { makeDate } from '../utils/common';
-import { DataList, IList } from './list.model';
+import { DataList, IList, IListOptions } from './list.model';
 import { Translation } from './translation.model';
 
 export enum EnumResourceType {
+  FOLDER = 'folder',
+  CONTENT = 'content',
+  SCHEMA = 'schema',
+
   USER = 'user',
   GROUP = 'group',
-  FOLDER = 'folder',
-  SCHEMA = 'schema',
-  CONTENT = 'content',
   ACL = 'acl',
   COMMENT = 'comment',
   MEDIA = 'media',
@@ -39,26 +39,31 @@ export interface IResource {
   tags?: string[];
   description?: string;
   body?: any;
-  contentType?: string;
+  contentType?: string;  // json, html...
   type?: EnumResourceType;
   schema?: string;
   subpath?: string;
   contentPath?: string;
   shortname?: string;
   displayname?: string;
+  space?: string;
+  path?: string;
 }
 
 
 export class Resource {
 
-  static NewInstance(resource: any): IResource {
-    // usually the crust is attributes, but there are important information on root, keep it for now
-    if (!resource) return null;
+  static NewInstance(resource: any, options?: any): IResource {
 
-    // in entry, subpath is undefined, but its not used anyway
-    const _nullroot = !resource.subpath || resource.subpath === '/';
-    const _subpath = _nullroot ? '/' : `/${resource.subpath}/`; // normalize
-    const _contentpath = _nullroot ? Config.API.rootPath : resource.subpath;
+    // never use __root here
+    if (!resource) return null;
+    // accoring to options type append shortname or not
+    const _extra = options?.resourceType && options.resourceType !== EnumResourceType.FOLDER ? '' : `/${resource.shortname}`;
+
+    // if subpath is null, adjust it to root
+    // clean double '//' this is a patch because im tired
+    const _path =  (options.subpath ? `/${options?.subpath}`: '').replace('//', '/');
+
     return {
       id: resource.uuid,
       shortname: resource.shortname,
@@ -72,19 +77,21 @@ export class Resource {
       description: Translation.MapLanguage(resource.description),
       body: resource.payload?.body,
       contentType: resource.payload?.content_type,
-      subpath: _subpath + resource.shortname,
-      contentPath: `${_contentpath}/${resource.shortname}`
+      subpath: `${_path}${_extra}`,
+      space: options?.space,
+      path: `${options?.space}/${resource.resource_type}${_path}${_extra}`,
     };
   }
   static NewInstances(resources: any[]): IResource[] {
-    return resources.map(Resource.NewInstance);
+    return resources.map(n => Resource.NewInstance(n));
   }
-  static NewList(dataset: any): IList<IResource> {
+  static NewList(dataset: any, options?: IListOptions): IList<IResource> {
     const dl = new DataList<IResource>();
-    dl.mapper = (item: any) => Resource.NewInstance({ ...item, ...item?.attributes });
+    dl.mapper = (item: any) => Resource.NewInstance({ ...item, ...item?.attributes }, options);
     return dl.NewDataList(dataset);
 
   }
+
 
   // prepare to POST
   static PrepCreate(resource: IResource): any {

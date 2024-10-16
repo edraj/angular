@@ -1,35 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IResource } from '../../models/resource.model';
 import { SpaceService } from '../../services/space.service';
-import { EntryDetailsPartial } from '../entry/details.partial';
 import { ResourceListPartial } from '../resource/list.partial';
 @Component({
 
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  , imports: [CommonModule, RouterModule, ResourceListPartial, EntryDetailsPartial]
+  , imports: [CommonModule, RouterModule, ResourceListPartial]
 })
 export class SpaceDetailsComponent implements OnInit {
 
-  @Input() shortname: string;
-  content$: BehaviorSubject<IResource> = new BehaviorSubject(null);
-
+  @Input() space: string;
   space$: Observable<IResource>;
 
-
-  constructor(private spaceService: SpaceService) {
+  constructor(private spaceService: SpaceService, private router: Router) {
     //
   }
   ngOnInit(): void {
-    this.space$ = this.spaceService.GetSpace(this.shortname);
+    this.space$ = this.spaceService.GetSpace(this.space);
   }
 
   openContent(resource: IResource) {
-    this.content$.next(resource);
+    // if content open
+
+    this.router.navigateByUrl(`/spaces/${resource.path}`);
+    // need to emit a signal  for the sourrinding component to handle this
+
   }
 
 }

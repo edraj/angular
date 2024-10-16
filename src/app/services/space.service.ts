@@ -17,9 +17,9 @@ export class SpaceService {
   GetSpace(space: string): Observable<IResource> {
 
     // space/Ayyash/__root__/Ayyash
-    return this.resourceService.GetResource({
+    return this.resourceService.GetEntry({
       space,
-      resource: EnumResourceType.SPACE,
+      resourceType: EnumResourceType.SPACE,
       subpath: `${Config.API.rootPath}/${space}`,
       withPayload: true,
       withAttachments: true

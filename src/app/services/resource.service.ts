@@ -18,27 +18,19 @@ export class ResourceService {
 
 
   GetResources(options: IListOptions = {}): Observable<IList<IResource>> {
+
     const params = ListOptions.MapQueryListOptions(options);
 
-
+    // query finds resouces in folders only, need to filter for specific resource to get single resource
     return this._http.post(Config.API.resource.query, params).pipe(
       map(response => {
-        return Resource.NewList(<any>response);
+        return Resource.NewList(<any>response, options);
       })
     );
   }
 
-  QueryResource(options: any): Observable<any> {
 
-    return this._http.post(Config.API.resource.query, options);
-  }
-  EntryResource(url: any): Observable<any> {
-
-    // /managed/entry/:resource/:space/:subpath/:shortnam
-    return this._http.get(url);
-  }
-
-  GetResource(options: IListOptions = {}): Observable<IResource> {
+  GetEntry(options: IListOptions = {}): Observable<IResource> {
     const params = GetParamsAsString(ListOptions.MapEntryListOptions({withPayload: true, ...options}));
 
     const _url = ListOptions.MapResourceUrlListOptions(Config.API.resource.details, options)
@@ -47,7 +39,8 @@ export class ResourceService {
     // /managed/entry/:resource/:space/:subpath/:shortname
     return this._http.get(_url).pipe(
       map(response => {
-        return Resource.NewInstance(<any>response);
+        // returned resource does not have space and subpath, pass them to map them
+        return Resource.NewInstance(<any>response, options);
       })
     );
   }

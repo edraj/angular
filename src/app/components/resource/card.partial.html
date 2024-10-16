@@ -2,7 +2,7 @@
   <div class="card">
     <div class="content" >
       <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type === 'folder'">{{ resource.expanded ? 'openfolder' : 'folder' }}</i>
-      <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type === 'content'">templates</i>
+      <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type !== 'folder'">templates</i>
       <a class="cam" (click)="select()">{{ resource.displayname}}</a>
     </div>
 

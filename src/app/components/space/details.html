@@ -1,27 +1,25 @@
 <div class="page">
   <div class="container">
-    @let space = space$ | async;
-    @if (space) {
+    @let _space = space$ | async;
+    @if (_space) {
     <div class="r txt-r">
-      Last updated: {{ space.updated | date }} <br>
-      <span class="smaller">Created {{ space.created | date }}</span>
+      Last updated: {{ _space.updated | date }} <br>
+      <span class="smaller">Created {{ _space.created | date }}</span>
     </div>
-    <h1>{{ space.displayname }}</h1>
-    {{ space.shortname }}
+    <h1>{{ _space.displayname }}</h1>
+    {{ _space.shortname }}
     <div class="spaced light">
-      {{ space.description }}
+      {{ _space.description }}
     </div>
+  }
 
     <div class="row-spaced">
       <div class="c-4">
-        <dm-resource-list [space]="space.shortname" (onSelect)="openContent($event)"></dm-resource-list>
+        <dm-resource-list [space]="space" (onSelect)="openContent($event)"></dm-resource-list>
       </div>
-      @if ( content$ | async; as content  ) {
         <div class="c-8" >
-          <dm-entry-details [resource]="content"></dm-entry-details>
+          <router-outlet></router-outlet>
         </div>
-      }
     </div>
-    }
   </div>
 </div>
