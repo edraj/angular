@@ -37,15 +37,15 @@ export class TestdetailsComponent implements OnInit {
     // to get folder, subpath contains the folder name
     // to get content, it should in filters_shortnames, lenno its a sub resource
     this.QueryResource({
-      type: EnumQueryType.SEARCH,
-      space_name: 'Ayyash', // always root space
-      subpath: '/schema', // starts with / +subpath + / + shortname
-      search: '',
+      type: EnumQueryType.SPACES,
+      space_name: 'aboutthere', // always root space
+      subpath: '/', // starts with / +subpath + / + shortname
+      // search: 'management',
       limit: 200,
       exact_subpath: true, // this brings one level at a time of folders and content, nothing else.
       retrieve_json_payload: true, // gets nodes payload
-      // filter_types: [EnumResourceType.CONTENT, EnumResourceType.FOLDER]
-      filter_shortnames: ['folder_rendering']
+      // filter_types: [EnumResourceType.SPACE],
+      // filter_shortnames: ['applications']
     }).subscribe(d => {
       _attn(d, 'types search');
     });

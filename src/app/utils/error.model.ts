@@ -30,12 +30,12 @@ export const UiError = (error: any): IUiError => {
         e.status = error.status || 0;
 
         // dig out the message if found
-        if (error.error?.errors?.length) {
+        if (error.error?.error) {
             // accumelate all errors
-            const errors = error.error.errors;
-            e.message = errors.map((l: any) => l.message).join('. ');
-            // code of first error is enough for ui
-            e.code = errors[0].code || 'Unknown';
+            const _error = error.error.error;
+            e.message =_error.message || '';
+            e.code = _error.code || 'Unknown';
+            // info, and type, TODO
         }
     }
     return e;

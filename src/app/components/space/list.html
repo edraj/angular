@@ -1,9 +1,12 @@
 <div class="page">
   <div class="container">
+      <div class="spaced">
+        <button class="btn-rev" (click)="create()">Create new</button>
+      </div>
 
       @let spaces = spaces$ | async;
         <ul class="row-spaced uc-6 rowlist" *ngIf="spaces">
-          @for (item of spaces.matches; track $index) {
+          @for (item of spaces; track $index) {
           <li>
             <div class="card">
               <div>

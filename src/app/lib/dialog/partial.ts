@@ -3,14 +3,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output,
 import { IDialogOptions } from './service';
 
 @Component({
-    selector: 'dm-dialog',
+    selector: 'cr-dialog',
    templateUrl: './partial.html',
    changeDetection: ChangeDetectionStrategy.OnPush,
    encapsulation: ViewEncapsulation.None,
    standalone: true,
    imports: [CommonModule]
 })
-export class DialogPartialComponent {
+export class DialogPartial {
 
    @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 

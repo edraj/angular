@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IResource } from '../../models/resource.model';
 import { SpaceService } from '../../services/space.service';
+import { SpaceListState } from '../../services/space.state';
 import { ResourceListPartial } from '../resource/list.partial';
 @Component({
 
@@ -17,11 +18,14 @@ export class SpaceDetailsComponent implements OnInit {
   @Input() space: string;
   space$: Observable<IResource>;
 
-  constructor(private spaceService: SpaceService, private router: Router) {
+  constructor(private spaceService: SpaceService,
+    private spaceListState: SpaceListState,
+    private router: Router) {
     //
   }
   ngOnInit(): void {
-    this.space$ = this.spaceService.GetSpace(this.space);
+
+    this.space$ = this.spaceListState.GetSpace(this.space);
   }
 
   openContent(resource: IResource) {

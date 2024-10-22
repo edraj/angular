@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IList } from '../../models/list.model';
+import { DialogService } from '../../lib/dialog/service';
 import { IResource } from '../../models/resource.model';
 import { SpaceService } from '../../services/space.service';
+import { SpaceListState } from '../../services/space.state';
+import { SpaceFormDialog } from './form.dialog';
 @Component({
 
   templateUrl: './list.html'
@@ -14,13 +16,34 @@ import { SpaceService } from '../../services/space.service';
 })
 export class SpaceListComponent implements OnInit {
 
-  spaces$: Observable<IList<IResource>>;
+  spaces$: Observable<IResource[]>;
 
-  constructor(private spaceService: SpaceService) {
+  constructor(private spaceService: SpaceService,
+    private spaceListState: SpaceListState,
+    private dialog: DialogService) {
     //
   }
   ngOnInit(): void {
 
-    this.spaces$ = this.spaceService.GetSpaces();
+    this.spaces$ = this.spaceListState.stateList$;
+  }
+
+  create() {
+    // create space dialog open
+    this.dialog.open(SpaceFormDialog, {
+      title: 'New space',
+      data: {},
+      onclose: (res) => {
+        if (res) {
+          this.spaceService.CreateSpace(res).subscribe({
+            next: (val) => {
+              // update spaces
+              this.spaceListState.addItem(val);
+            }
+          })
+        }
+      }
+    })
+
   }
 }

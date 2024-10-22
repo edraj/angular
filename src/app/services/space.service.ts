@@ -14,9 +14,20 @@ export class SpaceService {
 
   }
 
-  GetSpace(space: string): Observable<IResource> {
+  _GetSpace(space: string): Observable<IResource> {
 
     // space/Ayyash/__root__/Ayyash
+    return this.resourceService.GetEntry({
+      space,
+      resourceType: EnumResourceType.SPACE,
+      subpath: `${Config.API.rootPath}/${space}`,
+      withPayload: true,
+      withAttachments: true
+    });
+
+  }
+  GetSpace(space: string): Observable<IResource> {
+    // get spaces from space state
     return this.resourceService.GetEntry({
       space,
       resourceType: EnumResourceType.SPACE,
@@ -30,6 +41,19 @@ export class SpaceService {
   // get root spaces
   GetSpaces(): Observable<IList<IResource>> {
     return this.resourceService.GetResources({ type: EnumQueryType.SPACES });
+  }
+
+
+
+  CreateSpace(space: Partial<IResource>) {
+    return this.resourceService.CreateResource({
+      type: EnumResourceType.SPACE,
+      displayname: space.displayname,
+      shortname: space.shortname,
+      space: space.shortname,
+      subpath: '/',
+      description: space.description
+    }, true);
   }
 
 

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ApplicationRef, EmbeddedViewRef, Inject, Injectable, Injector, StaticProvider, Type, createComponent } from '@angular/core';
-import { DialogPartialComponent } from './partial';
+import { DialogPartial } from './partial';
 
 export interface IDialogOptions<T = any> {
   title?: string,
@@ -16,7 +16,7 @@ export interface IDialogOptions<T = any> {
 export class DialogService<T = any>  {
 
 
-  dialogs: { [key: string]: DialogPartialComponent; } = {};
+  dialogs: { [key: string]: DialogPartial; } = {};
 
   constructor(
     // bring in the application ref
@@ -44,7 +44,7 @@ export class DialogService<T = any>  {
 
 
     // then create the dialog that will host it
-    const componentRef = createComponent(DialogPartialComponent, {
+    const componentRef = createComponent(DialogPartial, {
       environmentInjector: this.appRef.injector,
       // pass the child here
       projectableNodes: [rootNode],

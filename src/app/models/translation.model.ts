@@ -10,4 +10,6 @@ export class Translation {
   static MapLanguage(prop: ITranslation): string {
     return prop ? prop[Res.language] : '';
   }
+
+
 }

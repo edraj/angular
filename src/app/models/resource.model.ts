@@ -62,7 +62,7 @@ export class Resource {
 
     // if subpath is null, adjust it to root
     // clean double '//' this is a patch because im tired
-    const _path =  (options.subpath ? `/${options?.subpath}`: '').replace('//', '/');
+    const _path = (options.subpath ? `/${options?.subpath}` : '').replace('//', '/');
 
     return {
       id: resource.uuid,
@@ -91,12 +91,63 @@ export class Resource {
     return dl.NewDataList(dataset);
 
   }
+  static NewInstanceFromResponse(response: any): IResource {
+    // find "records[]", and match first one
+    return Resource.NewInstance(response.records[0]);
+  }
 
 
   // prepare to POST
-  static PrepCreate(resource: IResource): any {
+  static PrepCreate(resource: Partial<IResource>): any {
+
     return {
-      id: resource.id
+      space_name: resource.shortname,
+      request_type: 'create',
+      records: [
+        {
+          resource_type: resource.type,
+          shortname: resource.shortname,
+          subpath: resource.subpath,
+          attributes: {
+            resource_type: resource.type,
+            shortname: resource.shortname,
+            space_name: resource.space,
+            // icon: 'folder',
+
+            // tags: [],
+            // root_registration_signature: '',
+            // mirrors: [],
+            // created_at: 2024-10-21T16:38:51.901466,
+            // primary_website: '',
+            // hide_folders: [],
+            // uuid: 'baf39baa-335c-4af7-bd08-5737ff567dc5',
+            // updated_at: '2024-10-21T16:51:46.878912',
+            // indexing_enabled: true,
+            // owner_shortname: dmart,
+            // capture_misses: false,
+            // active_plugins: [
+            //   action_log,
+            //   redis_db_update,
+            //   resource_folders_creation
+            // ],
+            // check_health: false,
+            is_active: true,
+            // languages: [
+            //   english,
+            //   arabic
+            // ],
+            displayname: {
+              en: resource.displayname,
+              ar: resource.displayname
+            },
+            description: {
+              en: resource.description,
+              ar: resource.description
+            },
+            relationships: [],
+          }
+        }
+      ]
     };
   }
   // prepare to PUT

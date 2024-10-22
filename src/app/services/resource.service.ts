@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Config } from '../config';
 import { IList, IListOptions, ListOptions } from '../models/list.model';
 import { IResource, Resource } from '../models/resource.model';
-import { GetParamsAsString } from '../utils/common';
+import { GetParamsAsString, uuid } from '../utils/common';
 
 
 @Injectable({ providedIn: 'root' })
@@ -31,7 +31,7 @@ export class ResourceService {
 
 
   GetEntry(options: IListOptions = {}): Observable<IResource> {
-    const params = GetParamsAsString(ListOptions.MapEntryListOptions({withPayload: true, ...options}));
+    const params = GetParamsAsString(ListOptions.MapEntryListOptions({ withPayload: true, ...options }));
 
     const _url = ListOptions.MapResourceUrlListOptions(Config.API.resource.details, options)
       .replace(':options', params);
@@ -45,12 +45,24 @@ export class ResourceService {
     );
   }
 
-  CreateResource(resource: IResource): Observable<IResource> {
+
+  CreateResource(resource: Partial<IResource>, valvet: boolean = false): Observable<IResource> {
     const data = Resource.PrepCreate(resource);
 
+    // valvet is supposed to go away once the resource create can be used to create space
+    if (valvet) {
+
+      return this._http.post(Config.API.space.create, data).pipe(
+        map((response: any) => {
+          return { ...resource, id: uuid() };
+        })
+      );
+    }
     return this._http.post(Config.API.resource.create, data).pipe(
-      map(response => {
-        return Resource.NewInstance(<any>response);
+      map((response: any) => {
+        // same resource with uuid, but better use resource as is
+        const id = Resource.NewInstanceFromResponse(response).id;
+        return { ...resource, id };
       })
     );
   }

@@ -50,14 +50,14 @@ export const Config = {
       // query
       list: '/managed/query',
       details: '/managed/entry/space/Ayyash/__root__/Ayyash',
-      create: '/spaces', // POST
+      create: '/managed/space', // POST
       save: '/spaces/:id', // PUT
       delete: '/spaces/:id', // DELETE
     }
     , resource: {
       query: '/managed/query',
       details: '/managed/entry/:resource/:space/:subpath?:options', // :shortname not needed
-      create: '/resources', // POST
+      create: '/managed/request', // POST
       save: '/resources/:id', // PUT
       delete: '/resources/:id', // DELETE
     }
