@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DialogService } from '../../lib/dialog/service';
 import { IResource } from '../../models/resource.model';
-import { SpaceService } from '../../services/space.service';
 import { SpaceListState } from '../../services/space.state';
 import { ResourceListPartial } from '../resource/list.partial';
 @Component({
@@ -18,7 +18,8 @@ export class SpaceDetailsComponent implements OnInit {
   @Input() space: string;
   space$: Observable<IResource>;
 
-  constructor(private spaceService: SpaceService,
+  constructor(
+    private dialog: DialogService,
     private spaceListState: SpaceListState,
     private router: Router) {
     //

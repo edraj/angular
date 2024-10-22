@@ -1,0 +1,35 @@
+<form [formGroup]="resourceForm" novalidate (ngSubmit)="saveSpace()" [class.was-validated]="forceValidation">
+
+  <md-input placeholder="Display name (en)">
+    <input
+      type="text"
+      class="md-input w100"
+      mdinput
+      formControlName="displayname"
+      [required]="true"
+    />
+  </md-input>
+  <md-input placeholder="Shortname">
+    <input
+      type="text"
+      class="md-input w100"
+      mdinput
+      formControlName="shortname"
+      [required]="true"
+    />
+    <div class="md-help-text" helptext>No spacecs allowed</div>
+  </md-input>
+  <md-input placeholder="Description (en)">
+    <input
+      type="text"
+      class="md-input w100"
+      mdinput
+      formControlName="description"
+      [required]="false"
+    />
+  </md-input>
+
+
+<button class="btn-rev" type="submit" >Save</button>
+
+</form>

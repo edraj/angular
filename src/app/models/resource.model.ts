@@ -62,7 +62,7 @@ export class Resource {
 
     // if subpath is null, adjust it to root
     // clean double '//' this is a patch because im tired
-    const _path = (options.subpath ? `/${options?.subpath}` : '').replace('//', '/');
+    const _path = (options?.subpath ? `/${options?.subpath}` : '').replace('//', '/');
 
     return {
       id: resource.uuid,
@@ -91,9 +91,9 @@ export class Resource {
     return dl.NewDataList(dataset);
 
   }
-  static NewInstanceFromResponse(response: any): IResource {
+  static NewInstanceFromResponse(response: any, options?: IListOptions): IResource {
     // find "records[]", and match first one
-    return Resource.NewInstance(response.records[0]);
+    return Resource.NewInstance(response.records[0], options);
   }
 
 
@@ -101,13 +101,13 @@ export class Resource {
   static PrepCreate(resource: Partial<IResource>): any {
 
     return {
-      space_name: resource.shortname,
+      space_name: resource.space,
       request_type: 'create',
       records: [
         {
           resource_type: resource.type,
           shortname: resource.shortname,
-          subpath: resource.subpath,
+          subpath: resource.subpath || '/',
           attributes: {
             resource_type: resource.type,
             shortname: resource.shortname,

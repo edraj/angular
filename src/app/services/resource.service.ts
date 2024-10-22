@@ -61,8 +61,7 @@ export class ResourceService {
     return this._http.post(Config.API.resource.create, data).pipe(
       map((response: any) => {
         // same resource with uuid, but better use resource as is
-        const id = Resource.NewInstanceFromResponse(response).id;
-        return { ...resource, id };
+        return { ...resource, ...Resource.NewInstanceFromResponse(response, {subpath: resource.subpath, space: resource.space}) };
       })
     );
   }

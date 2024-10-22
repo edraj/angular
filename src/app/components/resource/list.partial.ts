@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
+import { DialogService } from '../../lib/dialog/service';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
 import { ResourceCardPartial } from "./card.partial";
+import { ResourceFormDialog } from './form.dialog';
 import { IResourceNode, ResourceListState } from './resource.state';
 @Component({
   selector: 'dm-resource-list',
@@ -25,6 +27,7 @@ export class ResourceListPartial implements OnInit {
 
   constructor(private resourceService: ResourceService,
     private router: ActivatedRoute,
+    private dialog: DialogService,
     private resourceListState: ResourceListState) {
     //
   }
@@ -59,5 +62,24 @@ export class ResourceListPartial implements OnInit {
 
       this.resourceListState.editItem({...resource, expanded: !resource.expanded});
     }
+  }
+
+  createFolder() {
+    // need to know where im current at, from the state or from url
+    this.dialog.open(ResourceFormDialog, {
+      title: 'create folder',
+      css: 'modal-half-screen animate fromend',
+      onclose: (resource) => {
+        if (resource) {
+          // need to find a way to add to resources
+          this.resourceService.CreateResource({...resource, subpath: this.resource?.subpath, space: this.space}).subscribe({
+            next:(r) => {
+              this.resourceListState.addItem({...r, expanded: false});
+            }
+          })
+        }
+      }
+    })
+
   }
 }
