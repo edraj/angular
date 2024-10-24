@@ -1,7 +1,7 @@
 @let resources = resources$ | async;
 @if (resources) {
   <!-- <pre>{{ resources | json }}</pre> -->
-  <a class="btn-fake" (click)="createFolder()"><i class="liga">plus</i> Add folder</a>
+  <!-- <a class="btn-fake" (click)="createFolder()"><i class="liga">plus</i> Add folder</a> -->
   <ul class="alist lbreath">
     @for (item of resources; track $index) {
       <li>

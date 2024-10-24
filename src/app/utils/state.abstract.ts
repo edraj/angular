@@ -52,6 +52,7 @@ export class ListStateService<T extends IListItem>  {
         const currentList = [...this.currentList];
         const index = currentList.findIndex(n => n.id === item.id);
         if (index > -1) {
+
             currentList[index] = clone(item); // use a proper cloner
             this.stateList.next(currentList);
         }

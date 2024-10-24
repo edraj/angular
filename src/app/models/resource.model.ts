@@ -57,12 +57,8 @@ export class Resource {
 
     // never use __root here
     if (!resource) return null;
-    // accoring to options type append shortname or not
-    const _extra = options?.resourceType && options.resourceType !== EnumResourceType.FOLDER ? '' : `/${resource.shortname}`;
-
-    // if subpath is null, adjust it to root
-    // clean double '//' this is a patch because im tired
-    const _path = (options?.subpath ? `/${options?.subpath}` : '').replace('//', '/');
+    // subpath may start at root with '/', remove it
+    const _subpath = (`${resource.subpath}/${resource.shortname}`).replace('//', '');
 
     return {
       id: resource.uuid,
@@ -77,9 +73,9 @@ export class Resource {
       description: Translation.MapLanguage(resource.description),
       body: resource.payload?.body,
       contentType: resource.payload?.content_type,
-      subpath: `${_path}${_extra}`,
+      subpath: _subpath, // not needed, this or path
       space: options?.space,
-      path: `${options?.space}/${resource.resource_type}${_path}${_extra}`,
+      path: `${options?.space}/${resource.resource_type}/${_subpath}`,
     };
   }
   static NewInstances(resources: any[]): IResource[] {
