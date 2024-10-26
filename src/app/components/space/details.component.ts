@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
 import { ResourceListPartial } from '../resource/list.partial';
-import { TreeListState } from '../resource/resource.state';
+import { ResourcePathPartial } from '../resource/path.partial';
+import { PathState, TreeListState } from '../resource/resource.state';
 @Component({
 
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  , imports: [CommonModule, RouterModule, ResourceListPartial]
-  , providers: [TreeListState]
+  , imports: [CommonModule, RouterModule, ResourceListPartial, ResourcePathPartial]
+  , providers: [TreeListState, PathState]
 })
 export class SpaceDetailsComponent implements OnInit {
 
@@ -21,6 +22,7 @@ export class SpaceDetailsComponent implements OnInit {
 
   constructor(
     private spaceListState: SpaceListState,
+    private route: ActivatedRoute,
     private router: Router) {
     //
   }
@@ -28,6 +30,7 @@ export class SpaceDetailsComponent implements OnInit {
 
     this.space$ = this.spaceListState.GetSpace(this.space);
     // get first level resources and set the stage
+    _attn(this.route.snapshot.firstChild);
   }
 
   openContent(resource: IResource) {

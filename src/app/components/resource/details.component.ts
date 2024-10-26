@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IList } from '../../models/list.model';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
-import { TreeListState } from './resource.state';
+import { PathState } from './resource.state';
 @Component({
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
@@ -25,16 +25,14 @@ export class ResourceDetailsComponent implements OnInit {
         subpath: value,
         resourceType: this.type
       });
-
-
+      this.pathState.SetState({path: value, type: this.type});
 
     }
   };
 
   resources$: Observable<IList<IResource>>;
 
-  constructor(private resourceService: ResourceService,
-    @Optional() private treeState: TreeListState) {
+  constructor(private resourceService: ResourceService, private pathState: PathState) {
     //
   }
   ngOnInit(): void {

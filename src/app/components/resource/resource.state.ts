@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
-import { IResource } from '../../models/resource.model';
+import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
-import { ListStateService } from '../../utils/state.abstract';
+import { ListStateService, StateService } from '../../utils/state.abstract';
 
 export interface IResourceNode extends IResource {
   expanded?: boolean;
@@ -13,17 +13,27 @@ export interface ITree {
   populated?: boolean;
 }
 
+export interface IPath {
+  path: string;
+  type: EnumResourceType;
+}
+@Injectable()
+export class PathState extends StateService<IPath> {
+  constructor() {
+    super();
+  }
+}
 @Injectable()
 export class ResourceListState extends ListStateService<IResourceNode> {
   constructor() {
-    super('DEBUG');
+    super();
   }
 }
 
 @Injectable()
 export class TreeListState extends ListStateService<ITree> {
   constructor(private resourceService: ResourceService) {
-    super('DEBUG');
+    super();
   }
 
 
