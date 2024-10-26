@@ -18,8 +18,8 @@
         <dm-resource-list [space]="space" (onSelect)="openContent($event)"></dm-resource-list>
       </div>
         <div class="c-8" >
-            <!-- <a class="btn-fake" (click)="createFolder()"><i class="liga">plus</i> Add folder</a> -->
-          <dm-resource-path></dm-resource-path>
+
+          <dm-resource-path [space]="space" (onCreate)="openContent($event)"></dm-resource-path>
           <router-outlet></router-outlet>
         </div>
     </div>

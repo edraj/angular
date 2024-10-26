@@ -1,3 +1,7 @@
 
-path here then add folder and addcontent
-{{ pathState.stateItem$ | async | json }}
+@let _path = pathState.stateItem$ | async;
+@if (_path) {
+  {{ _path | json }}
+
+  <a class="btn-fake" (click)="createFolder(_path)"><i class="liga">plus</i> Add folder</a>
+}
