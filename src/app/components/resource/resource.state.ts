@@ -16,6 +16,7 @@ export interface ITree {
 export interface IPath {
   path: string;
   type: EnumResourceType;
+  ishee?: any;
 }
 @Injectable()
 export class PathState extends StateService<IPath> {

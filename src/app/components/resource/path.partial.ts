@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../lib/dialog/service';
 import { ResourceService } from '../../services/resource.service';
 import { ResourceFormDialog } from './form.dialog';
@@ -11,13 +11,16 @@ import { IPath, PathState } from './resource.state';
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
   , imports: [CommonModule, RouterModule]
+
 })
 export class ResourcePathPartial implements OnInit {
 
   @Input() space: string;
   @Output() onCreate: EventEmitter<any> = new EventEmitter();
 
-  constructor(public pathState: PathState, private dialog: DialogService, private resourceService: ResourceService,) {
+  constructor(public pathState: PathState, private dialog: DialogService,
+    private router: Router,
+    private resourceService: ResourceService) {
     //
   }
   ngOnInit(): void {
@@ -36,6 +39,8 @@ export class ResourcePathPartial implements OnInit {
             next: (r) => {
               // this.resourceListState.addItem({ ...r, expanded: false });
               this.onCreate.emit(r);
+              this.router.navigateByUrl(`/spaces/${r.path}`);
+              path.ishee.addItem({ ...r, expanded: false });
             }
           });
         }
@@ -43,4 +48,5 @@ export class ResourcePathPartial implements OnInit {
     });
 
   }
+
 }

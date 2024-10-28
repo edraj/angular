@@ -27,6 +27,7 @@ export class ResourceListPartial implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
+    // private pathState: PathState,
     private treeState: TreeListState) {
     //
   }
@@ -58,6 +59,8 @@ export class ResourceListPartial implements OnInit {
 
   }
   select(resource: IResourceNode) {
+    // this.pathState.UpdateState({ishee: this.resourceListState.stateList$});
+    // _attn(this.pathState.currentItem, 'what in here');
     this.onSelect.emit(resource);
   }
   toggle(resource: IResourceNode) {
@@ -68,5 +71,6 @@ export class ResourceListPartial implements OnInit {
 
     }
   }
+
 
 }

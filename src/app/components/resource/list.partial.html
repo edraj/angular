@@ -1,7 +1,7 @@
 @let resources = resources$ | async;
 @if (resources) {
   <!-- <pre>{{ resources | json }}</pre> -->
-  <ul class="alist lbreath">
+  <ul class="alist lbreath breath">
     @for (item of resources; track $index) {
       <li>
         <dm-resource-card [resource]="item" (onSelect)="select(item)" (onToggle)="toggle(item)"></dm-resource-card>

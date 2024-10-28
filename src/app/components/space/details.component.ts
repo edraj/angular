@@ -36,4 +36,8 @@ export class SpaceDetailsComponent implements OnInit {
 
   }
 
+  goto(resource: IResource) {
+    this.openContent(resource);
+  }
+
 }

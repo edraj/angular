@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { IList } from '../../models/list.model';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
+import { ResourcePathPartial } from './path.partial';
 import { PathState } from './resource.state';
 @Component({
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  , imports: [CommonModule, RouterModule]
+  , imports: [CommonModule, RouterModule, ResourcePathPartial]
 })
 export class ResourceDetailsComponent implements OnInit {
 
@@ -39,5 +40,9 @@ export class ResourceDetailsComponent implements OnInit {
 
 
   }
+  goto(r: any) {
+
+  }
+
 
 }
