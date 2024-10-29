@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../lib/dialog/service';
 import { ResourceService } from '../../services/resource.service';
 import { ResourceFormDialog } from './form.dialog';
-import { IPath, PathState } from './resource.state';
+import { IPath, PathState, ResourceListState } from './tree.state';
 @Component({
   selector: 'dm-resource-path',
   templateUrl: './path.partial.html'
@@ -20,6 +20,7 @@ export class ResourcePathPartial implements OnInit {
 
   constructor(public pathState: PathState, private dialog: DialogService,
     private router: Router,
+    private resourceListState: ResourceListState,
     private resourceService: ResourceService) {
     //
   }
@@ -37,10 +38,11 @@ export class ResourcePathPartial implements OnInit {
           // need to find a way to add to resources
           this.resourceService.CreateResource({ ...resource, subpath: path.path, space: this.space }).subscribe({
             next: (r) => {
-              // this.resourceListState.addItem({ ...r, expanded: false });
               this.onCreate.emit(r);
+              // try getting the match for parent id from path
+              this.resourceListState.AddFolder(r, path.path);
+              // try reroute also
               this.router.navigateByUrl(`/spaces/${r.path}`);
-              path.ishee.addItem({ ...r, expanded: false });
             }
           });
         }

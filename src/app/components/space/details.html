@@ -15,11 +15,11 @@
 
     <div class="row-spaced">
       <div class="c-4">
-        <dm-resource-list [space]="space" (onSelect)="openContent($event)"></dm-resource-list>
+        <dm-resource-list [space]="space"></dm-resource-list>
       </div>
         <div class="c-8" >
 
-          <dm-resource-path [space]="space" (onCreate)="goto($event)"></dm-resource-path>
+          <dm-resource-path [space]="space"></dm-resource-path>
           <router-outlet></router-outlet>
         </div>
     </div>

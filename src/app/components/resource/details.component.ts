@@ -6,7 +6,7 @@ import { IList } from '../../models/list.model';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
 import { ResourcePathPartial } from './path.partial';
-import { PathState } from './resource.state';
+import { PathState } from './tree.state';
 @Component({
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush

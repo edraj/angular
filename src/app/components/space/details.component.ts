@@ -6,14 +6,14 @@ import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
 import { ResourceListPartial } from '../resource/list.partial';
 import { ResourcePathPartial } from '../resource/path.partial';
-import { PathState, TreeListState } from '../resource/resource.state';
+import { PathState, ResourceListState } from '../resource/tree.state';
 @Component({
 
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
   , imports: [CommonModule, RouterModule, ResourceListPartial, ResourcePathPartial]
-  , providers: [TreeListState, PathState]
+  , providers: [ ResourceListState, PathState]
 })
 export class SpaceDetailsComponent implements OnInit {
 
@@ -28,16 +28,6 @@ export class SpaceDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.space$ = this.spaceListState.GetSpace(this.space);
-  }
-
-  openContent(resource: IResource) {
-    // if content open
-    this.router.navigateByUrl(`/spaces/${resource.path}`);
-
-  }
-
-  goto(resource: IResource) {
-    this.openContent(resource);
   }
 
 }
