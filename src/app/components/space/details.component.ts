@@ -6,7 +6,8 @@ import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
 import { ResourceListPartial } from '../resource/list.partial';
 import { ResourcePathPartial } from '../resource/path.partial';
-import { PathState, ResourceListState } from '../resource/tree.state';
+import { PathState } from '../resource/path.state';
+import { ResourceListState } from '../resource/tree.state';
 @Component({
 
   templateUrl: './details.html'

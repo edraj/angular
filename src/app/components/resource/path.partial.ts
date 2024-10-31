@@ -4,7 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../lib/dialog/service';
 import { ResourceService } from '../../services/resource.service';
 import { ResourceFormDialog } from './form.dialog';
-import { IPath, PathState, ResourceListState } from './tree.state';
+import { IPath, PathState } from './path.state';
+import { ResourceListState } from './tree.state';
 @Component({
   selector: 'dm-resource-path',
   templateUrl: './path.partial.html'

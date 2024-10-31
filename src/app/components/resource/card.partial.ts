@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IResourceNode } from './resource.state';
+import { IResourceNode } from './tree.state';
 @Component({
     selector: 'dm-resource-card',
     templateUrl: './card.partial.html'

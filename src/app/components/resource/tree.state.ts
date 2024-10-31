@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
-import { ListStateService, StateService } from '../../utils/state.abstract';
+import { ListStateService } from '../../utils/state.abstract';
+import { IPath } from './path.state';
 
 export interface IResourceNode extends IResource {
   expanded?: boolean;
@@ -11,16 +12,6 @@ export interface IResourceNode extends IResource {
 }
 
 
-export interface IPath {
-  path: string;
-  type: EnumResourceType;
-}
-@Injectable()
-export class PathState extends StateService<IPath> {
-  constructor() {
-    super();
-  }
-}
 @Injectable()
 export class ResourceListState extends ListStateService<IResourceNode> {
   constructor(private resourceService: ResourceService) {
@@ -35,7 +26,6 @@ export class ResourceListState extends ListStateService<IResourceNode> {
 
     // first find this element to see if it has already been populated
     const _current = this.currentList.find(r => r.id === _id);
-    // const _l = this.currentList.filter(r => r.parentId === _id);
     if (_current?.populated) {
       return this.GetChildren(_id);
     }
@@ -57,14 +47,20 @@ export class ResourceListState extends ListStateService<IResourceNode> {
   GetChildren(id?: string): Observable<IResourceNode[]> {
     return of(this.currentList.filter(f => f.parentId === id));
   }
-  _GetChildren(id?: string): Observable<IResourceNode[]> {
-    return this.stateList$.pipe(
-      map(n => n.filter(f => f.parentId === id))
-    );
 
-
-
+  Sync(path: IPath) {
+    if (path?.path && path?.source === 'route') {
+      // break it up and find and expend
+      // if destroying, dont do this
+      const parts = path.path.split('/');
+      this.currentList.filter(r => r.type === EnumResourceType.FOLDER).forEach(r => {
+        if (parts.includes(r.shortname)) {
+          r.expanded = true;
+        }
+      });
+    }
   }
+
   Toggle(resource: IResourceNode) {
     // nothing to toggle if not folder
     if (resource.type === EnumResourceType.FOLDER) {

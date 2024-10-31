@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { filter, Observable, switchMap } from 'rxjs';
 import { IList } from '../../models/list.model';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
 import { ResourcePathPartial } from './path.partial';
-import { PathState } from './tree.state';
+import { PathState } from './path.state';
 @Component({
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
@@ -19,15 +19,7 @@ export class ResourceDetailsComponent implements OnInit {
   @Input() type: EnumResourceType; // resource type, for now its folder or content
   @Input() set path(value: string) {
     if (value !== null) {
-      // should this fetch from state?
-
-      this.resources$ = this.resourceService.GetResources({
-        space: this.space,
-        subpath: value,
-        resourceType: this.type
-      });
-      this.pathState.SetState({path: value, type: this.type});
-
+      this.pathState.SetState({ path: value, type: this.type, space: this.space, source: 'route' });
     }
   };
 
@@ -37,7 +29,14 @@ export class ResourceDetailsComponent implements OnInit {
     //
   }
   ngOnInit(): void {
-
+    this.resources$ = this.pathState.stateItem$.pipe(
+      filter(p => p?.source === 'route'),
+      switchMap(p => this.resourceService.GetResources({
+        space: this.space,
+        subpath: p.path,
+        resourceType: this.type
+      }))
+    );
 
   }
   goto(r: any) {
