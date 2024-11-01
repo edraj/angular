@@ -72,7 +72,7 @@ export class Resource {
       displayname: Translation.MapLanguage(resource.displayname) || resource.shortname, // calculate per language
       description: Translation.MapLanguage(resource.description),
       body: resource.payload?.body,
-      contentType: resource.payload?.content_type,
+      contentType: resource.payload?.content_type, // TODO: Enum
       subpath: _subpath, // not needed, this or path
       space: options?.space,
       path: `${options?.space}/${resource.resource_type}/${_subpath}`,
@@ -89,13 +89,26 @@ export class Resource {
   }
   static NewInstanceFromResponse(response: any, options?: IListOptions): IResource {
     // find "records[]", and match first one
-    return Resource.NewInstance(response.records[0], options);
+    const item = response.records[0];
+    if (!item) return null;
+    return Resource.NewInstance({...item, ...item.attributes}, options);
   }
 
 
   // prepare to POST
   static PrepCreate(resource: Partial<IResource>): any {
 
+    let payload = {};
+
+    if (resource.type !== EnumResourceType.FOLDER){
+      payload ={
+        payload: {
+          body: resource.body,
+          schema_shortname: null,
+          content_type: resource.contentType
+        }
+      };
+    }
     return {
       space_name: resource.space,
       request_type: 'create',
@@ -141,6 +154,7 @@ export class Resource {
               ar: resource.description
             },
             relationships: [],
+            ...payload // check if this can be empty
           }
         }
       ]

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
@@ -22,8 +22,7 @@ export class SpaceDetailsComponent implements OnInit {
   space$: Observable<IResource>;
 
   constructor(
-    private spaceListState: SpaceListState,
-    private router: Router) {
+    private spaceListState: SpaceListState) {
     //
   }
   ngOnInit(): void {

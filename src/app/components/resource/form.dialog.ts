@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DialogPartial } from '../../lib/dialog/partial';
 import { MdInputModule } from '../../lib/mdinput/mdinput.module';
 import { Toast } from '../../lib/toast/toast.state';
+import { EnumResourceType } from '../../models/resource.model';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Toast } from '../../lib/toast/toast.state';
 export class ResourceFormDialog implements OnInit {
 
 
-  data!: any;
+  data!: { type: EnumResourceType; };
   dialog!: DialogPartial;
 
 
@@ -33,7 +34,9 @@ export class ResourceFormDialog implements OnInit {
       displayname: [],
       shortname: [],
       description: [],
-      type: ['folder'],
+      type: [this.data?.type || EnumResourceType.FOLDER],
+      contentType: ['json'],
+      body: [],
     });
   }
 

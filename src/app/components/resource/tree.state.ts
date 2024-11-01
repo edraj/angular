@@ -76,4 +76,5 @@ export class ResourceListState extends ListStateService<IResourceNode> {
       this.addItem({ ...resource, parentId: _parent.id, expanded: false, populated: false });
     }
   }
+
 }

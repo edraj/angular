@@ -21,7 +21,7 @@
   @if(type === 'content') {
   @let resource = content.matches[0];
 
-  <div>
+  <div *ngIf="resource">
     <h3>{{ resource.displayname }}</h3>
     <div>{{ resource.description }}</div>
     @if(resource.contentType === 'json') {

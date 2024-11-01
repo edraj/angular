@@ -28,6 +28,26 @@
       [required]="false"
     />
   </md-input>
+  @if (data.type !== 'folder') {
+    <md-input placeholder="Content type">
+      <input
+        type="text"
+        class="md-input w100"
+        mdinput
+        formControlName="contentType"
+        [required]="true"
+      />
+    </md-input>
+    <md-input placeholder="Body">
+      <input
+        type="text"
+        class="md-input w100"
+        mdinput
+        formControlName="body"
+        [required]="false"
+      />
+    </md-input>
+  }
 
 
 <button class="btn-rev" type="submit" >Save</button>
