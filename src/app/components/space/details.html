@@ -2,26 +2,26 @@
   <div class="container">
     @let _space = space$ | async;
     @if (_space) {
-    <div class="r txt-r">
-      Last updated: {{ _space.updated | date }} <br>
-      <span class="smaller">Created {{ _space.created | date }}</span>
-    </div>
-    <h1>{{ _space.displayname }}</h1>
-    {{ _space.shortname }}
-    <div class="spaced light">
-      {{ _space.description }}
-    </div>
-  }
+      <div class="r txt-r">
+        Last updated: {{ _space.updated | date }} <br>
+        <span class="smaller">Created {{ _space.created | date }}</span>
+        <i class="liga">submenu</i>
+      </div>
+      <h1>{{ _space.displayname }}</h1>
+      {{ _space.shortname }}
+      <div class="spaced light">
+        {{ _space.description }}
+      </div>
+    }
 
     <div class="row-spaced">
       <div class="c-4">
         <dm-resource-list [space]="space"></dm-resource-list>
       </div>
-        <div class="c-8" >
-
-          <dm-resource-path [space]="space"></dm-resource-path>
-          <router-outlet></router-outlet>
-        </div>
+      <div class="c-8" >
+        <dm-resource-path [space]="space"></dm-resource-path>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

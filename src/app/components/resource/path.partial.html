@@ -1,8 +1,11 @@
 
 @let _path = pathState.stateItem$ | async;
 @if (_path) {
-  {{ _path | json }}
+  <div class="small spaced">{{ _path.path }}
+  <!-- {{ _path | json }} -->
 
-  <a class="btn-fake" *ngIf="_path.type === enumResourceType.FOLDER" (click)="createFolder(_path, enumResourceType.FOLDER)"><i class="liga">plus</i> Add folder</a>
-  <a class="btn-fake" (click)="createFolder(_path, enumResourceType.CONTENT)"><i class="liga">plus</i> Add content</a>
+  <a *ngIf="_path.type === enumResourceType.FOLDER" (click)="createFolder(_path, enumResourceType.FOLDER)"><i class="liga">plus</i> Add folder</a> |
+  <a (click)="createFolder(_path, enumResourceType.CONTENT)"><i class="liga">plus</i> Add content</a>
+
+</div>
 }

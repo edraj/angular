@@ -1,17 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { filter, Observable, switchMap } from 'rxjs';
-import { IList } from '../../models/list.model';
+import { Toast } from '../../lib/toast/toast.state';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
+import { ResourceCardPartial } from './card.partial';
 import { ResourcePathPartial } from './path.partial';
 import { PathState } from './path.state';
+import { PageResourecListState } from './resources.state';
+import { ResourceListState } from './tree.state';
 @Component({
   templateUrl: './details.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  , imports: [CommonModule, RouterModule, ResourcePathPartial]
+  , imports: [CommonModule, RouterModule, ResourcePathPartial, ResourceCardPartial]
+  , providers: [PageResourecListState]
 })
 export class ResourceDetailsComponent implements OnInit {
 
@@ -23,9 +27,14 @@ export class ResourceDetailsComponent implements OnInit {
     }
   };
 
-  resources$: Observable<IList<IResource>>;
+  resources$: Observable<IResource[]>;
 
-  constructor(private resourceService: ResourceService, private pathState: PathState) {
+  constructor(private resourceService: ResourceService,
+    private pathState: PathState,
+    private treeState: ResourceListState,
+    private resourecState: PageResourecListState,
+    private toast: Toast,
+    private router: Router) {
     //
   }
   ngOnInit(): void {
@@ -35,12 +44,24 @@ export class ResourceDetailsComponent implements OnInit {
         space: this.space,
         subpath: p.path,
         resourceType: this.type
-      }))
+      })),
+      switchMap(d => this.resourecState.SetList(d.matches))
     );
 
   }
-  goto(r: any) {
+  goto(r: IResource) {
+    this.router.navigateByUrl(`/spaces/${r.path}`);
+  }
 
+  delete(r: IResource) {
+    this.resourceService.DeleteResource(r).subscribe({
+      next: () => {
+        // toast then redirect to parent? or update list?
+        this.treeState.DeleteFolder(r);
+        this.resourecState.removeItem(r);
+        this.toast.ShowSuccess('DONE');
+      }
+    });
   }
 
 

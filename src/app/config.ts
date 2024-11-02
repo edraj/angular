@@ -58,8 +58,8 @@ export const Config = {
       query: '/managed/query',
       details: '/managed/entry/:resource/:space/:subpath?:options', // :shortname not needed
       create: '/managed/request', // POST
-      save: '/resources/:id', // PUT
-      delete: '/resources/:id', // DELETE
+      save: '/managed/request', // PUT
+      delete: '/managed/request', // DELETE
     }
     // **gulpmodel**
   }

@@ -78,13 +78,15 @@ export class ResourceService {
   }
 
   DeleteResource(resource: IResource): Observable<boolean> {
-    const _url = Config.API.resource.delete.replace(':id', resource.id);
-
-    return this._http.delete(_url).pipe(
-      map(response => {
+    const data = Resource.PrepDelete(resource);
+    return this._http.post(Config.API.resource.delete, data).pipe(
+      map((response: any) => {
+        // same resource with uuid, but better use resource as is
         return true;
       })
     );
+
+
   }
 
 }

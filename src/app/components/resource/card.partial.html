@@ -1,11 +1,28 @@
 @if (resource) {
-  <div class="card">
-    <div class="content" >
-      <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type === 'folder'">{{ resource.expanded ? 'openfolder' : 'folder' }}</i>
-      <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type !== 'folder'">templates</i>
-      <a class="cam" (click)="select()">{{ resource.displayname}}</a>
-    </div>
+<div class="card">
+  <div class="content">
+    <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type === 'folder'">{{ resource.expanded ?
+      'openfolder' : 'folder' }}</i>
+    <i class="liga cam rbreath" (click)="toggle()" *ngIf="resource.type !== 'folder'">templates</i>
+    <a class="cam" (click)="select()">{{ resource.displayname}}</a>
 
+    <div class="small" *ngIf="mode.full">
+      {{resource.shortname}} - {{resource.contentType }}.
+      <div class="light">
+        {{ resource.description }}
+      </div>
+    </div>
   </div>
+
+  @if (mode.full) {
+    <div class="tail" >
+      Last updated: {{ resource.updated | date }} <br>
+      <span class="smaller">Created {{ resource.created | date }}</span>
+    </div>
+    <div class="hbreath">
+      <i class="liga a" (click)="delete()">delete</i>
+    </div>
+  }
+</div>
 
 }

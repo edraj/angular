@@ -76,5 +76,9 @@ export class ResourceListState extends ListStateService<IResourceNode> {
       this.addItem({ ...resource, parentId: _parent.id, expanded: false, populated: false });
     }
   }
+  DeleteFolder(resource: IResourceNode) {
+    this.removeItem(resource);
+    // now what happens to children?
+  }
 
 }
