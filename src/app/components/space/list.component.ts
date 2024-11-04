@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DialogService } from '../../lib/dialog/service';
 import { IResource } from '../../models/resource.model';
-import { SpaceService } from '../../services/space.service';
 import { SpaceListState } from '../../services/space.state';
 import { SpaceFormDialog } from './form.dialog';
 @Component({
@@ -18,7 +17,7 @@ export class SpaceListComponent implements OnInit {
 
   spaces$: Observable<IResource[]>;
 
-  constructor(private spaceService: SpaceService,
+  constructor(
     private spaceListState: SpaceListState,
     private dialog: DialogService) {
     //
@@ -32,18 +31,18 @@ export class SpaceListComponent implements OnInit {
     // create space dialog open
     this.dialog.open(SpaceFormDialog, {
       title: 'New space',
-      data: {},
+      data: { mode: { forNew: true } },
       onclose: (res) => {
         if (res) {
-          this.spaceService.CreateSpace(res).subscribe({
-            next: (val) => {
+          this.spaceListState.Create(res).subscribe({
+            next: () => {
               // update spaces
-              this.spaceListState.addItem(val);
+              //toast me?
             }
-          })
+          });
         }
       }
-    })
+    });
 
   }
 }

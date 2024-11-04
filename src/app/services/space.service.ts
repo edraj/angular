@@ -56,5 +56,19 @@ export class SpaceService {
     }, true);
   }
 
+  DeleteSpace(space: IResource): Observable<boolean> {
+    return this.resourceService.DeleteResource(space);
+  }
+  UpdateSpace(space: IResource): Observable<IResource> {
+    return this.resourceService.SaveResource({
+      type: EnumResourceType.SPACE,
+      displayname: space.displayname,
+      shortname: space.shortname,
+      space: space.shortname,
+      subpath: '/',
+      description: space.description,
+      id: space.id
+    });
+  }
 
 }

@@ -59,7 +59,6 @@ export class Resource {
     if (!resource) return null;
     // subpath may start at root with '/', remove it
     const _subpath = (`${resource.subpath}/${resource.shortname}`).replace('//', '');
-
     return {
       id: resource.uuid,
       shortname: resource.shortname,
@@ -74,7 +73,7 @@ export class Resource {
       body: resource.payload?.body,
       contentType: resource.payload?.content_type, // TODO: Enum
       subpath: _subpath, // not needed, this or path
-      space: options?.space,
+      space: options?.space || resource.space_name,
       path: `${options?.space}/${resource.resource_type}/${_subpath}`,
     };
   }
@@ -161,11 +160,13 @@ export class Resource {
     };
   }
   // prepare to PUT
-  static PrepSave(resource: IResource): any {
+  static PrepSave(resource: Partial<IResource>): any {
 
-    return {
-      id: resource.id
-    };
+    // uuid to the PrepCreate
+    const _prep = Resource.PrepCreate(resource);
+    _prep.records[0].attributes.uuid = resource.id;
+    _prep.request_type = 'replace';
+    return _prep;
 
   }
   static PrepDelete(resource: Partial<IResource>): any {

@@ -4,6 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MdInputModule } from '../../lib/mdinput/mdinput.module';
 import { Toast } from '../../lib/toast/toast.state';
+import { IResource } from '../../models/resource.model';
 import { IViewMode } from '../../models/viewmode.model';
 
 @Component({
@@ -18,6 +19,7 @@ export class SpaceFormPartial implements OnInit {
   // Add types
   @Input() mode: IViewMode = { forNew: true };
 
+  @Input() space: IResource;
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
 
   forceValidation = false;
@@ -33,6 +35,9 @@ export class SpaceFormPartial implements OnInit {
       shortname: [],
       description: []
     });
+    if (this.space) {
+      this.spaceForm.patchValue(this.space);
+    }
   }
 
 

@@ -66,13 +66,11 @@ export class ResourceService {
     );
   }
 
-  SaveResource(resource: IResource): Observable<IResource> {
-    const _url = Config.API.resource.save.replace(':id', resource.id);
+  SaveResource(resource: Partial<IResource>): Observable<IResource> {
     const data = Resource.PrepSave(resource);
-
-    return this._http.put(_url, data).pipe(
-      map(response => {
-        return resource;
+    return this._http.post(Config.API.resource.delete, data).pipe(
+      map((response: any) => {
+        return { ...resource, ...Resource.NewInstanceFromResponse(response, {space: resource.space}) };
       })
     );
   }
