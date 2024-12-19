@@ -8,12 +8,10 @@ import { ResourceFormDialog } from './form.dialog';
 import { IPath, PathState } from './path.state';
 import { ResourceListState } from './tree.state';
 @Component({
-  selector: 'dm-resource-path',
-  templateUrl: './path.partial.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule]
-
+    selector: 'dm-resource-path',
+    templateUrl: './path.partial.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule]
 })
 export class ResourcePathPartial implements OnInit {
 

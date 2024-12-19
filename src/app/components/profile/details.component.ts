@@ -6,11 +6,10 @@ import { IAuthInfo } from '../../auth/auth.model';
 import { AuthState } from '../../auth/auth.state';
 import { IProfile } from '../../auth/profile.model';
 @Component({
-    templateUrl: './details.html'
-    , changeDetection: ChangeDetectionStrategy.OnPush
-    , standalone: true
-    , imports: [CommonModule, RouterModule]
-    })
+    templateUrl: './details.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule]
+})
 export class ProfileDetailsComponent implements OnInit {
 
 

@@ -6,14 +6,13 @@ import { ResourceNodesPartial } from './nodes.partial';
 import { PathState } from './path.state';
 import { IResourceNode, ResourceListState } from './tree.state';
 @Component({
-  selector: 'dm-resource-list',
-  template: `
+    selector: 'dm-resource-list',
+    template: `
       @let rootNodes = nodes$ | async;
       <dm-resource-nodes [nodes]="rootNodes" [space]="space" ></dm-resource-nodes>
-    `
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, ResourceNodesPartial]
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, ResourceNodesPartial]
 })
 export class ResourceListPartial implements OnInit {
 

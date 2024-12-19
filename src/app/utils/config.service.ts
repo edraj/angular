@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { inject, Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Config } from './config';
 import { IConfig } from './config.model';
 
 
-export const configFactory = (config: ConfigService) => () =>
-    {
-      _seqlog('configFactory');
-      return config.loadAppConfig();}
+export const configFactory =  () => {
+  // inject, and return the Observerable function
+  const config = inject(ConfigService);
+  return config.loadAppConfig();
+};
 
 @Injectable({
     providedIn: 'root'

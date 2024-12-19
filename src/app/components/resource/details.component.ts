@@ -11,11 +11,10 @@ import { PathState } from './path.state';
 import { PageResourecListState } from './resources.state';
 import { ResourceListState } from './tree.state';
 @Component({
-  templateUrl: './details.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, ResourcePathPartial, ResourceCardPartial]
-  , providers: [PageResourecListState]
+    templateUrl: './details.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, ResourcePathPartial, ResourceCardPartial],
+    providers: [PageResourecListState]
 })
 export class ResourceDetailsComponent implements OnInit {
 

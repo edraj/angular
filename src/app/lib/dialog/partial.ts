@@ -4,11 +4,10 @@ import { IDialogOptions } from './service';
 
 @Component({
     selector: 'cr-dialog',
-   templateUrl: './partial.html',
-   changeDetection: ChangeDetectionStrategy.OnPush,
-   encapsulation: ViewEncapsulation.None,
-   standalone: true,
-   imports: [CommonModule]
+    templateUrl: './partial.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [CommonModule]
 })
 export class DialogPartial {
 

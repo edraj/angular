@@ -11,12 +11,10 @@ import { PathState } from '../resource/path.state';
 import { ResourceListState } from '../resource/tree.state';
 import { SpaceFormDialog } from './form.dialog';
 @Component({
-
-  templateUrl: './details.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, ResourceListPartial, ResourcePathPartial]
-  , providers: [ ResourceListState, PathState]
+    templateUrl: './details.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, ResourceListPartial, ResourcePathPartial],
+    providers: [ResourceListState, PathState]
 })
 export class SpaceDetailsComponent implements OnInit {
 

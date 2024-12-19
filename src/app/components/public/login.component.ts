@@ -10,11 +10,9 @@ import { Config } from '../../config';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Toast } from '../../lib/toast/toast.state';
 @Component({
-
-  templateUrl: './login.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, MdInputModule, TranslatePipe]
+    templateUrl: './login.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, MdInputModule, TranslatePipe]
 })
 export class PublicLoginComponent implements OnInit {
   loginForm: FormGroup;

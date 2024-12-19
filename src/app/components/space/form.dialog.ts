@@ -10,10 +10,9 @@ import { IViewMode } from '../../models/viewmode.model';
 
 
 @Component({
-  templateUrl: './form.dialog.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, MdInputModule]
+    templateUrl: './form.dialog.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, MdInputModule]
 })
 export class SpaceFormDialog implements OnInit {
 

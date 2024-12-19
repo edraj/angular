@@ -4,13 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IAuthInfo } from '../../auth/auth.model';
 import { AuthState } from '../../auth/auth.state';
-import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 
 @Component({
-  templateUrl: './main.component.html',
-  standalone: true,
-  imports: [TranslatePipe, RouterModule, CommonModule],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: './main.component.html',
+    imports: [ RouterModule, CommonModule]
 })
 export class MainLayoutComponent implements OnInit {
   profile$: Observable<IAuthInfo>;

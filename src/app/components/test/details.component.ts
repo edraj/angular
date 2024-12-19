@@ -6,12 +6,11 @@ import { Observable } from 'rxjs';
 import { Config } from '../../config';
 import { EnumQueryType } from '../../models/list.model';
 @Component({
-  template: `
+    template: `
     <div  class="container"></div>
-  `
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule]
+  `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule]
 })
 export class TestdetailsComponent implements OnInit {
 

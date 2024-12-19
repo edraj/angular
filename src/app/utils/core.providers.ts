@@ -1,6 +1,6 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { APP_INITIALIZER, ErrorHandler } from '@angular/core';
-import { configFactory, ConfigService } from './config.service';
+import { ErrorHandler, provideAppInitializer } from '@angular/core';
+import { configFactory } from './config.service';
 import { DmartErrorHandler } from './error.service';
 import { DmartInterceptorFn } from './http.interceptor';
 import { LocalInterceptorFn } from './local.interceptor';
@@ -15,11 +15,7 @@ export const CoreProviders = [
          DmartInterceptorFn
       ])
    ),
-   {
-      provide: APP_INITIALIZER,
-      useFactory: configFactory,
-      multi: true,
-      deps: [ConfigService]
-   },
+   provideAppInitializer(configFactory),
+
    { provide: ErrorHandler, useClass: DmartErrorHandler }
 ];

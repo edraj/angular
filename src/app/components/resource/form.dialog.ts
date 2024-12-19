@@ -9,10 +9,9 @@ import { EnumResourceType } from '../../models/resource.model';
 
 
 @Component({
-  templateUrl: './form.dialog.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, MdInputModule]
+    templateUrl: './form.dialog.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, MdInputModule]
 })
 export class ResourceFormDialog implements OnInit {
 

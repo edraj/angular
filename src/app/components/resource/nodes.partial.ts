@@ -7,8 +7,8 @@ import { ResourceCardPartial } from './card.partial';
 import { PathState } from './path.state';
 import { IResourceNode, ResourceListState } from './tree.state';
 @Component({
-  selector: 'dm-resource-nodes',
-  template: `
+    selector: 'dm-resource-nodes',
+    template: `
       <ul class="alist lbreath breath" *ngIf="nodes?.length">
         <li *ngFor="let item of nodes">
         <dm-resource-card [resource]="item" (onSelect)="select(item)" (onToggle)="toggle(item)"></dm-resource-card>
@@ -18,10 +18,9 @@ import { IResourceNode, ResourceListState } from './tree.state';
           }
         </li>
       </ul>
-    `
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, ResourceCardPartial]
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, ResourceCardPartial]
 })
 export class ResourceNodesPartial implements OnInit {
 

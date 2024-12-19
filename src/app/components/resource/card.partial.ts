@@ -5,11 +5,10 @@ import { IViewMode } from '../../models/viewmode.model';
 import { IResourceNode } from './tree.state';
 @Component({
     selector: 'dm-resource-card',
-    templateUrl: './card.partial.html'
-    , changeDetection: ChangeDetectionStrategy.OnPush
-    , standalone: true
-    , imports: [CommonModule, RouterModule]
-    })
+    templateUrl: './card.partial.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule]
+})
 export class ResourceCardPartial implements OnInit {
 
     @Input() resource: IResourceNode;

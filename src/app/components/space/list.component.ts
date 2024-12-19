@@ -7,11 +7,9 @@ import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
 import { SpaceFormDialog } from './form.dialog';
 @Component({
-
-  templateUrl: './list.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule]
+    templateUrl: './list.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule]
 })
 export class SpaceListComponent implements OnInit {
 

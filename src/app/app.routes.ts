@@ -1,6 +1,6 @@
 import {
-  ENVIRONMENT_INITIALIZER,
-  inject
+  inject,
+  provideEnvironmentInitializer
 } from '@angular/core';
 import {
   NavigationCancel,
@@ -92,8 +92,9 @@ const AppRoutes: Routes = [
 ];
 
 
-const routerFunc = (router: Router) => () => {
+const routerFunc = () => {
   const loaderState = inject(LoaderState);
+  const router = inject(Router);
 
   router.events
     .pipe(
@@ -138,12 +139,7 @@ export const AppRouteProviders = [
   ),
   { provide: RouteReuseStrategy, useClass: RouteReuseService },
   { provide: TitleStrategy, useClass: DmartTitleStrategy },
-  {
-    provide: ENVIRONMENT_INITIALIZER,
-    multi: true,
-    useFactory: routerFunc,
-    deps: [Router],
-  }
+  provideEnvironmentInitializer(routerFunc)
 ];
 
 
