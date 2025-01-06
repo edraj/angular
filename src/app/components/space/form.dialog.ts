@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DialogPartial } from '../../lib/dialog/partial';
-import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { InputComponent } from '../../lib/input/input.const';
 import { Toast } from '../../lib/toast/toast.state';
 import { IResource } from '../../models/resource.model';
 import { IViewMode } from '../../models/viewmode.model';
@@ -12,14 +12,13 @@ import { IViewMode } from '../../models/viewmode.model';
 @Component({
     templateUrl: './form.dialog.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, MdInputModule]
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, InputComponent]
 })
 export class SpaceFormDialog implements OnInit {
 
   data!: { mode?: IViewMode, space?: IResource; };
   dialog!: DialogPartial;
 
-  forceValidation = false;
   spaceForm: FormGroup;
 
   constructor(private fb: FormBuilder, private toast: Toast) {
@@ -39,7 +38,6 @@ export class SpaceFormDialog implements OnInit {
 
 
   saveSpace(): void {
-    this.forceValidation = false;
     this.toast.Hide();
 
 
@@ -52,7 +50,6 @@ export class SpaceFormDialog implements OnInit {
       // then emit
       this.dialog.close(_space);
     } else {
-      this.forceValidation = true;
       this.toast.ShowError('INVALID_FORM');
     }
   }

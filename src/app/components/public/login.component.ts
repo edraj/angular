@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { catchError } from 'rxjs';
-import { MdInputModule } from 'src/app/lib/mdinput/mdinput.module';
 import { AuthService } from '../../auth/auth.service';
 import { AuthState } from '../../auth/auth.state';
 import { Config } from '../../config';
+import { InputComponent } from '../../lib/input/input.const';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Toast } from '../../lib/toast/toast.state';
 @Component({
     templateUrl: './login.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, MdInputModule, TranslatePipe]
+    imports: [CommonModule, RouterModule,  TranslatePipe, ReactiveFormsModule, InputComponent]
 })
 export class PublicLoginComponent implements OnInit {
   loginForm: FormGroup;

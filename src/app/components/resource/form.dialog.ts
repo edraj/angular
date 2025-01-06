@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DialogPartial } from '../../lib/dialog/partial';
-import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { InputComponent } from '../../lib/input/input.const';
 import { Toast } from '../../lib/toast/toast.state';
 import { EnumResourceType } from '../../models/resource.model';
 
@@ -11,7 +11,7 @@ import { EnumResourceType } from '../../models/resource.model';
 @Component({
     templateUrl: './form.dialog.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, MdInputModule]
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, InputComponent]
 })
 export class ResourceFormDialog implements OnInit {
 

@@ -1,52 +1,57 @@
-<form [formGroup]="resourceForm" novalidate (ngSubmit)="saveSpace()" [class.was-validated]="forceValidation">
+<form [formGroup]="resourceForm" (ngSubmit)="saveSpace()">
 
-  <md-input placeholder="Display name (en)">
+  <cr-input placeholder="Display name (en)">
     <input
       type="text"
-      class="md-input w100"
-      mdinput
+      class="w100"
+      id="displayname"
+      crinput
       formControlName="displayname"
       [required]="true"
     />
-  </md-input>
-  <md-input placeholder="Shortname">
+  </cr-input>
+  <cr-input placeholder="Shortname">
     <input
       type="text"
-      class="md-input w100"
-      mdinput
+      class="w100"
+      id="shortname"
+      crinput
       formControlName="shortname"
       [required]="true"
     />
-    <div class="md-help-text" helptext>No spacecs allowed</div>
-  </md-input>
-  <md-input placeholder="Description (en)">
+    <ng-container helptext>No spacecs allowed</ng-container>
+  </cr-input>
+  <cr-input placeholder="Description (en)">
     <input
       type="text"
-      class="md-input w100"
-      mdinput
+      class="w100"
+      id="description"
+      crinput
       formControlName="description"
       [required]="false"
     />
-  </md-input>
+  </cr-input>
   @if (data.type !== 'folder') {
-    <md-input placeholder="Content type">
+    <cr-input placeholder="Content type">
       <input
         type="text"
-        class="md-input w100"
-        mdinput
+        class="w100"
+        id="contenttype"
+        crinput
         formControlName="contentType"
         [required]="true"
       />
-    </md-input>
-    <md-input placeholder="Body">
+    </cr-input>
+    <cr-input placeholder="Body">
       <input
         type="text"
-        class="md-input w100"
-        mdinput
+        class="w100"
+        id="body"
+        crinput
         formControlName="body"
         [required]="false"
       />
-    </md-input>
+    </cr-input>
   }
 
 

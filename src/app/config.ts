@@ -50,9 +50,7 @@ export const Config = {
       // query
       list: '/managed/query',
       details: '/managed/entry/space/Ayyash/__root__/Ayyash',
-      create: '/managed/space', // POST
-      save: '/spaces/:id', // PUT
-      delete: '/spaces/:id', // DELETE
+      create: '/managed/space', // POST, valvet, needs to go
     }
     , resource: {
       query: '/managed/query',

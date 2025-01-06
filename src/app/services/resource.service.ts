@@ -51,7 +51,6 @@ export class ResourceService {
 
     // valvet is supposed to go away once the resource create can be used to create space
     if (valvet) {
-
       return this._http.post(Config.API.space.create, data).pipe(
         map((response: any) => {
           return { ...resource, id: uuid() };

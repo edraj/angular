@@ -1,4 +1,4 @@
-import { HttpContext, HttpContextToken, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpContext, HttpContextToken, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { finalize, shareReplay } from 'rxjs';
 import { AuthState } from '../auth/auth.state';
@@ -34,18 +34,7 @@ const getHeaders = (): any => {
    return headers;
 };
 
-// if response wrapped with "data"
-const mapData = (response: any) => {
 
-   if (response instanceof HttpResponse) {
-
-      // clone body and modify so that "data" is removed as a wrapper
-      if (response.body && response.body.data) {
-         response = response.clone({ body: response.body.data });
-      }
-   }
-   return response;
-};
 
 export const DmartInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
 

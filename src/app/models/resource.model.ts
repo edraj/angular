@@ -97,9 +97,9 @@ export class Resource {
   // prepare to POST
   static PrepCreate(resource: Partial<IResource>): any {
 
-    let payload = {};
+    let payload = null;
 
-    if (resource.type !== EnumResourceType.FOLDER){
+    if (resource.type === EnumResourceType.CONTENT){
       payload ={
         payload: {
           body: resource.body,

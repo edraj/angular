@@ -6,14 +6,13 @@ import { Toast } from '../../lib/toast/toast.state';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
 import { ResourceCardPartial } from './card.partial';
-import { ResourcePathPartial } from './path.partial';
 import { PathState } from './path.state';
 import { PageResourecListState } from './resources.state';
 import { ResourceListState } from './tree.state';
 @Component({
     templateUrl: './details.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, ResourcePathPartial, ResourceCardPartial],
+    imports: [CommonModule, RouterModule, ResourceCardPartial],
     providers: [PageResourecListState]
 })
 export class ResourceDetailsComponent implements OnInit {

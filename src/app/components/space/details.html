@@ -2,19 +2,25 @@
   <div class="container">
     @let _space = space$ | async;
     @if (_space) {
-      <div class="r txt-r">
-        Last updated: {{ _space.updated | date }} <br>
-        <span class="smaller">Created {{ _space.created | date }}</span>
+      <div class="row-spaced bthin spaced">
         <div>
-          <button class="btn-fake" (click)="delete(_space)"><i class="liga">delete</i></button>
-          <button class="btn-fake" (click)="edit(_space)"><i class="liga">edit</i></button>
+          <h1>{{ _space.displayname }}</h1>
+          {{ _space.shortname }}
+          <div class="spaced light">
+            {{ _space.description }}
+          </div>
+
+        </div>
+        <div class="txt-r">
+          Last updated: {{ _space.updated | date }} <br>
+          <span class="smaller">Created {{ _space.created | date }}</span>
+          <div>
+            <button class="btn-fake" (click)="delete(_space)"><i class="liga">delete</i></button>
+            <button class="btn-fake" (click)="edit(_space)"><i class="liga">edit</i></button>
+          </div>
         </div>
       </div>
-      <h1>{{ _space.displayname }}</h1>
-      {{ _space.shortname }}
-      <div class="spaced light">
-        {{ _space.description }}
-      </div>
+
 
     <div class="row-spaced">
       <div class="c-4">

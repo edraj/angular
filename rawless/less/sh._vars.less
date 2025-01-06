@@ -111,7 +111,7 @@
 // buttons
 @btn-diff-bg: @red;
 @rowlist-border: @grey-light;
-@b-color: @grey; // bthin and bthick
+@b-color: @grey-light; // bthin and bthick
 @b-dark-color: @grey-dark; // bthin-dark and bthick-dark
 
 // shadows
@@ -146,7 +146,7 @@
 // for forms @radius-input: 0;
 
 /* spacing and layout */
-@space: 2.4rem;
+@space: 1.6rem;
 @halfspace: @space * 0.5;
 @extraspace: @space * 1.5;
 @doublespace: @space * 2;
@@ -183,6 +183,11 @@
 @trans-func: cubic-bezier(0.4, 0, 0.2, 1); // basic most used animation
 
 :root {
+    --sh-space: @space;
+    --sh-halfspace: @halfspace;
+    --sh-extraspace: @extraspace;
+    --sh-doublespace: @doublespace;
+
     --sh-fontface: @fontface;
     --sh-fontface-ar: @fontface-ar;
     --sh-font-size: @font-size;
