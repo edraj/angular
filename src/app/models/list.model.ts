@@ -72,6 +72,8 @@ export class ListOptions {
       // TODO:
       sort_type: 'descending',
       sort_by: 'resource_type',
+      retrieve_json_payload: options.withPayload || false
+
       // filter_types: [EnumResourceType.CONTENT, EnumResourceType.FOLDER]
     };
 

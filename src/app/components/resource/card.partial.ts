@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IViewMode } from '../../models/viewmode.model';
 import { IResourceNode } from './tree.state';
 @Component({
     selector: 'dm-resource-card',
@@ -12,7 +11,6 @@ import { IResourceNode } from './tree.state';
 export class ResourceCardPartial implements OnInit {
 
     @Input() resource: IResourceNode;
-    @Input() mode: IViewMode = { full: false };
 
     @Output() onToggle: EventEmitter<IResourceNode> = new EventEmitter();
     @Output() onSelect: EventEmitter<IResourceNode> = new EventEmitter();

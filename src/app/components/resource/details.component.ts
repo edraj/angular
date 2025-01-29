@@ -5,14 +5,13 @@ import { filter, Observable, switchMap } from 'rxjs';
 import { Toast } from '../../lib/toast/toast.state';
 import { EnumResourceType, IResource } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
-import { ResourceCardPartial } from './card.partial';
 import { PathState } from './path.state';
 import { PageResourecListState } from './resources.state';
 import { ResourceListState } from './tree.state';
 @Component({
     templateUrl: './details.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, ResourceCardPartial],
+    imports: [CommonModule, RouterModule],
     providers: [PageResourecListState]
 })
 export class ResourceDetailsComponent implements OnInit {
@@ -41,7 +40,8 @@ export class ResourceDetailsComponent implements OnInit {
       switchMap(p => this.resourceService.GetResources({
         space: this.space,
         subpath: p.path,
-        resourceType: this.type
+        resourceType: this.type,
+        withPayload: true
       })),
       switchMap(d => this.resourecState.SetList(d.matches))
     );

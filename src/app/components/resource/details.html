@@ -1,7 +1,7 @@
 @let resources = resources$ | async;
 @if (resources) {
 
-
+<!--
   @if (type === 'folder') {
     <ul class="rowlist">
       <li *ngFor="let record of resources">
@@ -9,7 +9,7 @@
          (onSelect)="goto($event)"></dm-resource-card>
       </li>
     </ul>
-  }
+  } -->
 
   @if(type === 'content') {
     @let resource = resources[0];
@@ -21,14 +21,21 @@
     <div *ngIf="resource">
       <h3>{{ resource.displayname }}</h3>
       <div>{{ resource.description }}</div>
+
       @if(resource.contentType === 'json') {
       <pre>{{ resource.body | json }}</pre>
       }
+      @if(resource.contentType === 'text') {
+      <div class="box box-white">{{ resource.body }}</div>
+      }
 
       @if(resource.contentType === 'html') {
-      <div [innerHTML]="resource.body"></div>
-
+      <div [innerHTML]="resource.body.text"></div>
       }
+
+      @if(resource.contentType === 'markdown') {
+        <div class="box box-white">{{ resource.body }}</div>
+        }
     </div>
 
   }

@@ -13,6 +13,7 @@ export const SpaceRoutes: Routes = [
   {
     component: SpaceDetailsComponent,
     path: ':space',
+    // data: {reuse: 'never'}, // not good
     children: [
       {
         component: ResourceDetailsComponent,

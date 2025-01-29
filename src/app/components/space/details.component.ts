@@ -21,6 +21,8 @@ export class SpaceDetailsComponent implements OnInit {
   @Input() space: string;
   space$: Observable<IResource>;
 
+  expanded: boolean = false;
+
   constructor(
     private router: Router,
     private dialog: DialogService,

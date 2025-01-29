@@ -2,6 +2,10 @@
 /* site defined vars */
 /* spacing and layout */
 :root {
+  --sh-space: 1.6rem;
+  --sh-halfspace: 0.8rem;
+  --sh-extraspace: 2.4rem;
+  --sh-doublespace: 3.2rem;
   --sh-fontface: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Fira Sans", "Helvetica Neue", Arial, sans-serif;
   --sh-fontface-ar: "Traditional Arabic", tahoma, sans-serif;
   --sh-font-size: 1.4;
@@ -50,6 +54,7 @@
   --sh-label-padding: 0.25rem 0.8rem;
   --sh-mainpad: 1.6rem;
   --sh-box-padding: 1rem;
+  --sh-box-border: 1px;
   --sh-list-spacing: 0.7rem;
   --sh-table-th-border-color: #263238;
   --sh-table-td-border-color: #f3f3f3;
@@ -2299,6 +2304,53 @@ select.ng-dirty.ng-touched.ng-invalid ~ .md-label {
   }
 }
 /* CRITICAL END */
+.resource-page {
+  padding-inline-start: 30%;
+  width: 100vw;
+}
+.resource-list {
+  position: fixed;
+  inset-inline-start: 0;
+  inset-block-start: 40px;
+  width: 30%;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+  overflow-x: 0;
+  z-index: 1000;
+  background-color: #fff;
+  transition: width 0.5s ease-in-out;
+}
+.resource-list .resource-full {
+  opacity: 0;
+  display: none;
+}
+.resource-list .inexpand {
+  display: none;
+}
+.resource-list .incollapse {
+  display: inline;
+}
+.resource-list.expanded {
+  width: 50%;
+}
+.resource-list.expanded .inexpand {
+  display: inline;
+}
+.resource-list.expanded .incollapse {
+  display: none;
+}
+.resource-list.expanded .resource-full {
+  display: block;
+  animation: reveal 0.2s ease-in-out 0.5s forwards;
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .forprint {
   display: none;
 }

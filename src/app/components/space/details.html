@@ -1,37 +1,39 @@
-<div class="page">
-  <div class="container">
-    @let _space = space$ | async;
-    @if (_space) {
-      <div class="row-spaced bthin spaced">
-        <div>
-          <h1>{{ _space.displayname }}</h1>
-          {{ _space.shortname }}
-          <div class="spaced light">
-            {{ _space.description }}
-          </div>
-
-        </div>
-        <div class="txt-r">
-          Last updated: {{ _space.updated | date }} <br>
-          <span class="smaller">Created {{ _space.created | date }}</span>
-          <div>
-            <button class="btn-fake" (click)="delete(_space)"><i class="liga">delete</i></button>
-            <button class="btn-fake" (click)="edit(_space)"><i class="liga">edit</i></button>
-          </div>
-        </div>
-      </div>
+@let _space = space$ | async;
+@if (_space) {
 
 
-    <div class="row-spaced">
-      <div class="c-4">
-        <dm-resource-list [space]="_space.space"></dm-resource-list>
-      </div>
-      <div class="c-8" >
-        <dm-resource-path [space]="_space.space"></dm-resource-path>
-        <router-outlet></router-outlet>
-      </div>
+<div class="resource-list" [class.expanded]="expanded">
+
+  <button class="btn-fake incollapse" (click)="expanded = true">Open</button>
+  <button class="btn-fake inexpand" (click)="expanded = false">Close</button>
+  <div class="box spaced">
+
+    <h1 class="f5">{{ _space.displayname }}</h1>
+    {{ _space.shortname }}
+
+    <div class="spaced light inexpand">
+      {{ _space.description }}
     </div>
-  }
-
   </div>
+
+  <div class="box  bthin" *ngIf="expanded">
+    Last updated: {{ _space.updated | date }} <br>
+    <span class="smaller">Created {{ _space.created | date }}</span>
+    <div>
+      <button class="btn-fake" (click)="delete(_space)"><i class="liga">delete</i></button>
+      <button class="btn-fake" (click)="edit(_space)"><i class="liga">edit</i></button>
+    </div>
+  </div>
+  <dm-resource-list [space]="_space.space"></dm-resource-list>
 </div>
+
+<div class="resource-page">
+  <div class="container">
+
+    <dm-resource-path [space]="_space.space"></dm-resource-path>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+}
