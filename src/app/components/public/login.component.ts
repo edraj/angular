@@ -12,7 +12,7 @@ import { Toast } from '../../lib/toast/toast.state';
 @Component({
     templateUrl: './login.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule,  TranslatePipe, ReactiveFormsModule, InputComponent]
+    imports: [CommonModule, RouterModule,  TranslatePipe, ReactiveFormsModule, ...InputComponent]
 })
 export class PublicLoginComponent implements OnInit {
   loginForm: FormGroup;

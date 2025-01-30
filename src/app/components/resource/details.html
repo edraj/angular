@@ -1,41 +1,43 @@
 @let resources = resources$ | async;
 @if (resources) {
 
-<!--
-  @if (type === 'folder') {
-    <ul class="rowlist">
-      <li *ngFor="let record of resources">
-        <dm-resource-card [resource]="record" [mode]="{full :true}" (onDelete)="delete($event)"
-         (onSelect)="goto($event)"></dm-resource-card>
-      </li>
-    </ul>
-  } -->
-
   @if(type === 'content') {
     @let resource = resources[0];
 
-    <pre>
-      {{ resource | json}}
-    </pre>
+
 
     <div *ngIf="resource">
+      <div class="box spaced txt-r">
+        <button class="btn-fake" (click)="ishee = true">RAW</button>
+        <button class="btn-fake" (click)="ishee = false">Content</button>
+      </div>
+
       <h3>{{ resource.displayname }}</h3>
-      <div>{{ resource.description }}</div>
+      <div class="spaced">{{ resource.description }}</div>
 
-      @if(resource.contentType === 'json') {
-      <pre>{{ resource.body | json }}</pre>
-      }
-      @if(resource.contentType === 'text') {
-      <div class="box box-white">{{ resource.body }}</div>
-      }
+      <div class="box box-white" *ngIf="ishee">
+<pre>
+{{ resource | json}}
+</pre>
 
-      @if(resource.contentType === 'html') {
-      <div [innerHTML]="resource.body.text"></div>
-      }
+      </div>
+      <div class="box box-white" *ngIf="!ishee">
 
-      @if(resource.contentType === 'markdown') {
-        <div class="box box-white">{{ resource.body }}</div>
+        @if(resource.contentType === 'json') {
+        <pre>{{ resource.body | json }}</pre>
         }
+        @if(resource.contentType === 'text') {
+        {{ resource.body }}
+        }
+
+        @if(resource.contentType === 'html') {
+        <div [innerHTML]="resource.body.text"></div>
+        }
+
+        @if(resource.contentType === 'markdown') {
+        {{ resource.body }}
+        }
+      </div>
     </div>
 
   }

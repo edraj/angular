@@ -26,6 +26,8 @@ export class ResourceDetailsComponent implements OnInit {
 
   resources$: Observable<IResource[]>;
 
+  ishee = false;
+
   constructor(private resourceService: ResourceService,
     private pathState: PathState,
     private treeState: ResourceListState,
