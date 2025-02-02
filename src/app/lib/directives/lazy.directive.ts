@@ -25,7 +25,7 @@ interface IOptions {
 @Directive({
   selector: '[crLazy]',
   exportAs: 'crLazy',
-  standalone: true,
+  ,
 })
 export class LazyDirective implements AfterViewInit, OnChanges, OnDestroy {
 

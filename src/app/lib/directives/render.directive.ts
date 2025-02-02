@@ -3,7 +3,7 @@ import { Directive, Input, OnInit, PLATFORM_ID, inject } from '@angular/core';
 
 @Directive({
   selector: '[shServerRender]',
-  standalone: true,
+  ,
   hostDirectives: [{
     directive: NgIf,
     inputs: ['ngIfElse: shServerRenderElse']

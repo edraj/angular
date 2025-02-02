@@ -22,16 +22,11 @@
           "options": {
             "outputPath": "dist",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./rawless/less",
-                "./node_modules/shut/src/less"
-              ]
+              "includePaths": ["./rawless/less", "./node_modules/shut/src/less"]
             },
             "scripts": [
               {
@@ -83,8 +78,15 @@
               ]
             },
             "production": {
-              "index": "src/placeholder.html",
-              "outputPath": "../host/client/",
+              "index": {
+                "input": "src/placeholder.html",
+                "output": "index.html"
+              },
+              "outputPath": {
+                "base": "../host/client/",
+                "browser": "",
+                "media": "assets"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -129,13 +131,7 @@
                   "input": "src/assets/css/dmart.css",
                   "bundleName": "styles",
                   "inject": false
-                },
-                {
-                  "input": "src/assets/css/dmart.rtl.css",
-                  "bundleName": "styles.rtl",
-                  "inject": false
                 }
-
               ],
               "budgets": [
                 {
@@ -193,7 +189,7 @@
                   "output": "/locale"
                 },
                 {
-                  "glob": "en.js",
+                  "glob": "*(ar-JO|en).js",
                   "input": "node_modules/@angular/common/locales/global",
                   "output": "/locale"
                 },

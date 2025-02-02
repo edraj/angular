@@ -1,13 +1,13 @@
 
 import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnDestroy,
-  Output
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnDestroy,
+    Output
 } from '@angular/core';
 
 export interface IExpandsOptions {
@@ -23,7 +23,7 @@ export interface IExpandsOptions {
   // tslint:disable-next-line:directive-selector
   selector: '[shExpands]',
   exportAs: 'expands',
-  standalone: true
+
 })
 export class ExpandsDirective implements OnDestroy, AfterViewInit {
 

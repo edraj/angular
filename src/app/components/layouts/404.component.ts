@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LoaderState } from '../../lib/loader/loader.state';
 
 @Component({
     templateUrl: './404.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+
 })
 export class NotFoundComponent implements OnInit {
 

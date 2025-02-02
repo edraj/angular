@@ -8,7 +8,6 @@ import {
   OnDestroy,
   Output
 } from '@angular/core';
-import { Platform } from '../../services/core/platform.service';
 
 export interface IInview {
   outofview?: string,
@@ -27,8 +26,6 @@ const clean = (str: string) => str ? str.split(' ') : [];
 
 @Directive({
   selector: '[crInview]',
-  // exportAs: 'crInview',
-  standalone: true,
 })
 export class InviewDirective implements AfterViewInit, OnDestroy {
   @Input() crInview: string = '';
@@ -59,7 +56,6 @@ export class InviewDirective implements AfterViewInit, OnDestroy {
   }
   constructor(
     private el: ElementRef,
-    private platform: Platform
   ) { }
 
 
@@ -106,10 +102,6 @@ export class InviewDirective implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-
-    if (!this.platform.isBrowser) {
-      return;
-    }
 
     // prep classes
     this.viewClasses = this.prepClasses();

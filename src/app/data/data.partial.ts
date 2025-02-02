@@ -8,7 +8,7 @@ import { DataService } from './data.service';
     selector: 'dm-data',
     template: `{{ (data$ | async)?.value}}`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
+    ,
     imports: [CommonModule]
 })
 export class DataPartialComponent {

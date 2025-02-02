@@ -21,7 +21,7 @@ import { TranslatePipe } from '../pipes/translate.pipe';
    `,
    styleUrls: ['./pager.less'],
    encapsulation: ViewEncapsulation.None,
-   standalone: true,
+   ,
    imports: [CommonModule, TranslatePipe]
  })
  export class PagerPartialComponent implements OnInit {

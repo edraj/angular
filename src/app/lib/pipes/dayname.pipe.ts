@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Res } from '../../utils/resources';
 
-@Pipe({ name: 'dayname', standalone: true })
+@Pipe({ name: 'dayname' })
 export class DayNamePipe implements PipeTransform {
 
 
