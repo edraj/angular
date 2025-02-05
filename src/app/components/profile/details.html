@@ -2,18 +2,24 @@
     <div class="container">
       @let profile = profile$ | async;
       <h3 class="f3 spaced">{{ profile.username }}</h3>
-
-      <dl class="grid g-3 spacedout g-bthin">
-        <dt>Type</dt>
+      <dl class="grid g-3 spacedout g-bthin doublespaced">
+        <dt>{{'Type' | translate:'Type'}}</dt>
         <dd>{{ profile.type }} <i class="liga" [class.green]="profile.forcePasswordChange">check</i> Force new password</dd>
-        <dt>Email</dt>
+        <dt>{{'Email' | translate:'Email'}}</dt>
         <dd>{{ profile.email }} <i class="liga" [class.green]="profile.isEmailVerified">check</i> Verified</dd>
-        <dt>Phone</dt>
+        <dt>{{'Phone' | translate:'Phone'}}</dt>
         <dd>{{ profile.mobile }} <i class="liga" [class.green]="profile.isMobileVerified">check</i> Verified</dd>
-        <dt>Display name</dt>
+        <dt>{{'Display name' | translate:'DisplayName'}}</dt>
         <dd>{{ profile.displayname }}</dd>
-        <dt>Roles</dt>
+        <dt>{{'Roles' | translate:'Roles'}}</dt>
         <dd>{{ profile.roles }}</dd>
+
+      </dl>
+
+      <h3 class="f3 spaced">{{'Preferences' | translate:'Preferences'}}</h3>
+      <dl class="grid g-3 spacedout g-bthin doublespaced">
+        <dt>{{'Language' | translate:'Language'}}</dt>
+        <dd>English (<a [href]="changeLanguage('ar')">change</a>)</dd>
       </dl>
     </div>
 </div>

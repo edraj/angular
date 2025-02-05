@@ -30,9 +30,7 @@ export class Profile  {
       isMobileVerified: profile.is_msisdn_verified,
       mobile: profile.msisdn,
       roles: profile.roles,
-      forcePasswordChange: profile.force_password_change
-
-
+      forcePasswordChange: profile.force_password_change,
     };
   }
 

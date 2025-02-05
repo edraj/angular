@@ -1,5 +1,6 @@
-import { AfterViewInit, Directive, ElementRef, Input, signal } from '@angular/core';
+import { Directive, ElementRef, Input, signal } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, Validators } from '@angular/forms';
+import { Res } from '../../utils/resources';
 import { InputPatterns } from './patterns';
 import { InputValidators } from './validators';
 
@@ -8,7 +9,7 @@ import { InputValidators } from './validators';
   providers: [{ provide: NG_VALIDATORS, multi: true, useExisting: InputDirective }],
   exportAs: 'crinput',
 })
-export class InputDirective implements AfterViewInit, Validator {
+export class InputDirective implements Validator {
 
   @Input() min?: number;
   @Input() max?: number;
@@ -25,19 +26,7 @@ export class InputDirective implements AfterViewInit, Validator {
   constructor(private el: ElementRef) {
   }
 
-  ngAfterViewInit(): void {
-    // if (this.element.getAttribute('type') === 'file') {
-    //   // catch size on change
-    //   this.element.addEventListener('change', (e) => {
-    //     const files = (e.target as HTMLInputElement).files;
-    //     if (files && files[0]) {
-    //       const size = files[0].size;
-    //       _attn(size);
-    //         this.errorText.set('File too large');
-    //     }
-    //   });
-    // }
-  }
+
   public get element(): HTMLElement {
     return this.el.nativeElement;
   };
@@ -61,25 +50,25 @@ export class InputDirective implements AfterViewInit, Validator {
     this.errorText.set('Required');
     if (this.min && control.value) {
       if (Validators.min(this.min)(control)) {
-        this.errorText.set('Too small');
+        this.errorText.set(Res.Get('INVALID_TOOSMALL'));
       }
     }
 
     if (this.max && control.value) {
       if (Validators.max(this.max)(control)) {
-        this.errorText.set('Too large');
+        this.errorText.set(Res.Get('INVALID_TOOLARGE'));
       }
     }
 
     if (this.minlength && control.value) {
       if (Validators.minLength(this.minlength)(control)) {
-        this.errorText.set('Too short');
+        this.errorText.set(Res.Get('INVALID_TOOSHORT'));
       }
     }
 
     if (this.maxlength && control.value) {
       if (Validators.maxLength(this.maxlength)(control)) {
-        this.errorText.set('Too long');
+        this.errorText.set(Res.Get('INVALID_TOOLONG'));
       }
     }
 
@@ -87,7 +76,7 @@ export class InputDirective implements AfterViewInit, Validator {
     if (this.block) {
       // its valid if the value is outside the block array
       if (control.value >= this.block[0] && control.value <= this.block[1]) {
-        this.errorText.set('Invalid number');
+        this.errorText.set(Res.Get('INVALID_NUMBER'));
         return {
           block: true
         }
@@ -95,19 +84,19 @@ export class InputDirective implements AfterViewInit, Validator {
     }
 
     if(this.pattern) {
-      this.errorText.set('Invalid format');
+      this.errorText.set(Res.Get('INVALID_FORMAT'));
     }
     if(this.email) {
-      this.errorText.set('Invalid email format');
+      this.errorText.set(Res.Get('INVALID_email_FORMAT'));
     }
 
     if(this.crpattern) {
 
-      this.errorText.set('Invalid format');
+      this.errorText.set(Res.Get('INVALID_FORMAT'));
       // if pattern exists in our list, use validators
       let _pattern = InputPatterns.get(this.crpattern);
       if (_pattern) {
-        this.errorText.set(`Invalid ${this.crpattern} format`);
+        this.errorText.set(Res.Get(`INVALID_${this.crpattern}_FORMAT`));
 
         return Validators.pattern(_pattern)(control);
       }

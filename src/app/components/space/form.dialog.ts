@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DialogPartial } from '../../lib/dialog/partial';
 import { InputComponent } from '../../lib/input/input.const';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Toast } from '../../lib/toast/toast.state';
 import { IResource } from '../../models/resource.model';
 import { IViewMode } from '../../models/viewmode.model';
@@ -12,7 +13,7 @@ import { IViewMode } from '../../models/viewmode.model';
 @Component({
     templateUrl: './form.dialog.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, InputComponent]
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, ...InputComponent, TranslatePipe]
 })
 export class SpaceFormDialog implements OnInit {
 

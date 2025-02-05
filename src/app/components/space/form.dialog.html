@@ -1,7 +1,7 @@
 
 <form [formGroup]="spaceForm" novalidate (ngSubmit)="saveSpace()">
 
-  <cr-input placeholder="Display name (en)" class="spaced">
+  <cr-input placeholder="{{'Display name (en)' | translate:'DisplayNameEn'}}" class="spaced">
     <input
       type="text"
       class="w100"
@@ -11,7 +11,7 @@
       [required]="true"
     />
   </cr-input>
-  <cr-input placeholder="Shortname" error="Required with no spaces">
+  <cr-input placeholder="{{'Shortname' | translate:'Shortname'}}" error="Required with no spaces">
     <input
       type="text"
       class="w100"
@@ -21,9 +21,9 @@
       crpattern="shortname"
       [required]="true"
     />
-    <ng-container helptext>No spacecs allowed</ng-container>
+    <ng-container helptext>{{'No spacecs allowed' | translate:'NoSpacesAllowed'}}</ng-container>
   </cr-input>
-  <cr-input placeholder="Description (en)">
+  <cr-input placeholder="{{'Description (en)' | translate:'DescriptionEn'}}">
     <input
       type="text"
       class="w100"
@@ -35,6 +35,6 @@
   </cr-input>
 
 
-<button class="btn-rev" type="submit" >Save</button>
+<button class="btn-rev" type="submit" >{{'Save' | translate:'Save'}}</button>
 
 </form>

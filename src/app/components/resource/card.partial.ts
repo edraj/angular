@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { IResourceNode } from './tree.state';
 @Component({
     selector: 'dm-resource-card',
     templateUrl: './card.partial.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule]
+    imports: [CommonModule, RouterModule, TranslatePipe]
 })
 export class ResourceCardPartial implements OnInit {
 

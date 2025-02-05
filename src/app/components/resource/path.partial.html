@@ -4,8 +4,8 @@
   <div class="small spaced">{{ _path.path }}
   <!-- {{ _path | json }} -->
 
-  <a *ngIf="_path.type === enumResourceType.FOLDER" (click)="createFolder(_path, enumResourceType.FOLDER)"><i class="liga">plus</i> Add folder</a> |
-  <a (click)="createFolder(_path, enumResourceType.CONTENT)"><i class="liga">plus</i> Add content</a>
+  <a *ngIf="_path.type === enumResourceType.FOLDER" (click)="createFolder(_path, enumResourceType.FOLDER)"><i class="liga">plus</i> {{'Add folder' | translate:'AddFolder'}}</a> |
+  <a (click)="createFolder(_path, enumResourceType.CONTENT)"><i class="liga">plus</i> {{'Add content' | translate:'AddContent'}}</a>
 
 </div>
 }

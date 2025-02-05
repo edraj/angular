@@ -3,13 +3,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DialogService } from '../../lib/dialog/service';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { IResource } from '../../models/resource.model';
 import { SpaceListState } from '../../services/space.state';
+import { Res } from '../../utils/resources';
 import { SpaceFormDialog } from './form.dialog';
 @Component({
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule]
+    imports: [CommonModule, RouterModule, TranslatePipe]
 })
 export class SpaceListComponent implements OnInit {
 
@@ -28,7 +30,7 @@ export class SpaceListComponent implements OnInit {
   create() {
     // create space dialog open
     this.dialog.open(SpaceFormDialog, {
-      title: 'New space',
+      title: Res.Get('NewSpace'),
       data: { mode: { forNew: true } },
       onclose: (res) => {
         if (res) {

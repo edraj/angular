@@ -4,6 +4,7 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angu
 import { RouterModule } from '@angular/router';
 import { DialogPartial } from '../../lib/dialog/partial';
 import { InputComponent } from '../../lib/input/input.const';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Toast } from '../../lib/toast/toast.state';
 import { EnumResourceType } from '../../models/resource.model';
 
@@ -11,7 +12,7 @@ import { EnumResourceType } from '../../models/resource.model';
 @Component({
     templateUrl: './form.dialog.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, InputComponent]
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, ...InputComponent, TranslatePipe]
 })
 export class ResourceFormDialog implements OnInit {
 

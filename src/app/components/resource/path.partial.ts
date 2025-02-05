@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../lib/dialog/service';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { EnumResourceType } from '../../models/resource.model';
 import { ResourceService } from '../../services/resource.service';
+import { Res } from '../../utils/resources';
 import { ResourceFormDialog } from './form.dialog';
 import { IPath, PathState } from './path.state';
 import { ResourceListState } from './tree.state';
@@ -11,7 +13,7 @@ import { ResourceListState } from './tree.state';
     selector: 'dm-resource-path',
     templateUrl: './path.partial.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, RouterModule]
+    imports: [CommonModule, RouterModule, TranslatePipe]
 })
 export class ResourcePathPartial implements OnInit {
 
@@ -31,7 +33,7 @@ export class ResourcePathPartial implements OnInit {
   createFolder(path: IPath, type: EnumResourceType) {
     // need to know where im current at, from the state or from url
     this.dialog.open(ResourceFormDialog, {
-      title: 'create folder',
+      title: Res.Get('CreateFolder'),
       css: 'modal-half-screen animate fromend',
       data: { type },
       onclose: (resource) => {

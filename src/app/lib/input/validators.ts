@@ -118,33 +118,6 @@ export const atleastOne = (control: AbstractControl): ValidationErrors | null =>
 
 };
 
-// export const dateRangeValidatorFn = (min: string, max?: string): ValidatorFn => {
-//   return (control: AbstractControl): ValidationErrors | null => {
-//     if (!control.value) return null;
-
-//     // make two dates if one is null, the other takes over, if both null, return null.
-//     const _min = makeDate(min);
-//     const _max = makeDate(max);
-//     if (!_min && !_max) return null;
-
-//     // if both exist, range
-//     // if only one exists, check against that
-//     const _minDate = _min ? +_min : null;
-//     const _maxDate = _max ? +_max : null;
-//     const value = +(new Date(control.value));
-
-//     // if only min
-//     const future = _maxDate ? value < _maxDate : true;
-//     const past = value > _minDate;
-//     if (future && past) {
-//       return null;
-//     }
-
-//     return {
-//       dateRange: true
-//     };
-//   };
-// };
 
 export const InputValidators = new Map<string, any >([
   ['matchPassword', matchPasswordFn],

@@ -1,7 +1,7 @@
 <div class="page">
   <div class="container">
       <div class="spaced">
-        <button class="btn-rev" (click)="create()">Create new</button>
+        <button class="btn-rev" (click)="create()">{{'Create new' | translate:'CreateNew'}}</button>
       </div>
 
       @let spaces = spaces$ | async;

@@ -1,29 +1,29 @@
 <div class="singlepage">
     <div class="container">
         <form [formGroup]="loginForm" (submit)="login()" novalidate [class.was-validated]="forceValidation">
-            <h2 class="f5 doublespaced weight-bold">{{'Login' | translate:'LOGIN'}}</h2>
+            <h2 class="f5 doublespaced weight-bold">{{'Login' | translate:'Login'}}</h2>
 
             <div class="doublespaced">
-              <cr-input placeholder="{{'Username' | translate:'USERNAME'}}">
+              <cr-input placeholder="{{'Username' | translate:'Username'}}">
                 <input type="text" id="username" class="w100" crinput formControlName="username"
                      [required]="true" autocomplete="username" />
               </cr-input>
 
             </div>
             <div class="doublespaced">
-              <cr-input placeholder="{{'Password' | translate:'PASSWORD'}}">
+              <cr-input placeholder="{{'Password' | translate:'Password'}}">
                 <input type="password" id="current-password" autofocus autocomplete="current-password" class="w100" crinput [required]="true" formControlName="password" #password />
               </cr-input>
             </div>
 
 
             <div>
-              <button type="submit" class="btn-rev btn-colored w100 btn-large">{{"Sign in" | translate:"SIGN_IN"}}</button>
+              <button type="submit" class="btn-rev btn-colored w100 btn-large">{{"Sign in" | translate:"SignIn"}}</button>
             </div>
 
             <div class="breath">
-              {{"New user?" | translate:'REGISTER_QUESTION'}}
-              <a class="weight-bold" routerLink="/register" >{{'Register' | translate:'REGISTER'}}</a>.
+              {{"New user?" | translate:'NewUserQuestion'}}
+              <a class="weight-bold" routerLink="/register" >{{'Register' | translate:'Register'}}</a>.
              </div>
           </form>
     </div>

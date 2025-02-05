@@ -29,8 +29,8 @@ export class ProfileService {
         return _auth;
       })
     );
-
   }
+
 
 
 }

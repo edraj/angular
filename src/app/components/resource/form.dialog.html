@@ -1,6 +1,6 @@
 <form [formGroup]="resourceForm" (ngSubmit)="saveSpace()">
 
-  <cr-input placeholder="Display name (en)">
+  <cr-input placeholder="{{'Display name (en)' | translate:'DisplayNameEn'}}">
     <input
       type="text"
       class="w100"
@@ -10,7 +10,7 @@
       [required]="true"
     />
   </cr-input>
-  <cr-input placeholder="Shortname">
+  <cr-input placeholder="{{'Shortname' | translate:'Shortname'}}">
     <input
       type="text"
       class="w100"
@@ -19,9 +19,9 @@
       formControlName="shortname"
       [required]="true"
     />
-    <ng-container helptext>No spacecs allowed</ng-container>
+    <ng-container helptext>{{'No spacecs allowed' | translate:'NoSpacesAllowed'}}</ng-container>
   </cr-input>
-  <cr-input placeholder="Description (en)">
+  <cr-input placeholder="{{'Description (en)' | translate:'DescriptionEn'}}">
     <input
       type="text"
       class="w100"
@@ -32,7 +32,7 @@
     />
   </cr-input>
   @if (data.type !== 'folder') {
-    <cr-input placeholder="Content type">
+    <cr-input placeholder="{{'Content type' | translate:'ContentType'}}">
       <input
         type="text"
         class="w100"
@@ -42,7 +42,7 @@
         [required]="true"
       />
     </cr-input>
-    <cr-input placeholder="Body">
+    <cr-input placeholder="{{'Body' | translate:'Body'}}">
       <input
         type="text"
         class="w100"
@@ -55,6 +55,6 @@
   }
 
 
-<button class="btn-rev" type="submit" >Save</button>
+<button class="btn-rev" type="submit" >{{'Save' | translate:'Save'}}</button>
 
 </form>
