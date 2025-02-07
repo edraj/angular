@@ -17,7 +17,7 @@
   </div>
 
   <div class="box  bthin" *ngIf="expanded">
-    {{'Last updated' | translate:'LastUpdted'}}: {{ _space.updated | date }} <br>
+    {{'Last updated' | translate:'LastUpdated'}}: {{ _space.updated | date }} <br>
     <span class="smaller">{{'Created' | translate:'Created'}} {{ _space.created | date }}</span>
     <div>
       <button class="btn-fake" (click)="delete(_space)"><i class="liga">delete</i></button>

@@ -77,6 +77,51 @@
                 }
               ]
             },
+            "serveAr": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": true,
+              "index": "src/index.rtl.html",
+              "styles": [
+                {
+                  "input": "src/assets/css/dmart.css",
+                  "bundleName": "styles"
+                },
+                {
+                  "input": "src/assets/css/dmart.rtl.css",
+                  "bundleName": "stylesrtl"
+                }
+              ],
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "src",
+                  "output": "/"
+                },
+                {
+                  "glob": "images/**/*",
+                  "input": "src/assets",
+                  "output": "/assets"
+                },
+                {
+                  "glob": "*.js",
+                  "input": "src/locale",
+                  "output": "/locale"
+                },
+                {
+                  "glob": "*.json",
+                  "input": "configs",
+                  "output": "/localdata"
+                },
+                {
+                  "glob": "*(ar-JO|en).js",
+                  "input": "node_modules/@angular/common/locales/global",
+                  "output": "/locale"
+                }
+              ]
+            },
             "production": {
               "index": {
                 "input": "src/placeholder.html",
@@ -128,8 +173,18 @@
               ],
               "styles": [
                 {
-                  "input": "src/assets/css/dmart.css",
+                  "input": "src/assets/css/dmart.general.css",
                   "bundleName": "styles",
+                  "inject": false
+                },
+                {
+                  "input": "src/assets/css/dmart.critical.css",
+                  "bundleName": "critical",
+                  "inject": false
+                },
+                {
+                  "input": "src/assets/css/dmart.rtl.css",
+                  "bundleName": "styles.rtl",
                   "inject": false
                 }
               ],
@@ -229,6 +284,9 @@
             },
             "development": {
               "buildTarget": "dmartweb:build:serve"
+            },
+            "rtl": {
+              "buildTarget": "dmartweb:build:serveAr"
             }
           },
           "defaultConfiguration": "development"

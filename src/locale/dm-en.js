@@ -7,41 +7,8 @@
   const _LocaleId = 'en';
   const _Language = 'en';
 
-  /* followng not needed for english if not overriding specific library valies
-  const _extend = function() {
-      if (global.ng?.common?.locales) {
-          global.ng.common.locales[_LocaleId].forEach(n => {
-              if (n){
-                  // find it by checking that is an object and not an array
-                  if (typeof n === 'object' && !Array.isArray(n)){
-                      n['WLG'] = ['₩'];
-                  }
 
-              }
-          });
 
-      }
-  };
-  if (window != null) {
-      // in browser platform
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.defer = true;
-      script.src = `locale/${_LocaleId}.js`;
-      script.onload = function () {
-          // on load, add a missing curreny symbol
-          _extend();
-
-      }
-      document.head.appendChild(script);
-
-  } else {
-      // in server platform
-      require(`./${_LocaleId}.js`);
-      _extend();
-
-  }
-  */
 
   const keys = {
     NoRes: '',
@@ -90,10 +57,8 @@
       ERROR: 'Oh oh, an error occurred',
       NOT_FOUND: '404! Hmm! Once in a while, we change address and forget to update the mailman.'
     },
-    NewSpace: 'New space',
-    CreateFolder: 'Create folder',
-    DEFAULT_PAGE_TITLE: 'Welcome',
-
+    // FIXME: fix this
+    NewSpace: 'Create space',
     Spaces: 'Spaces',
     Logout: 'Logout',
     Type: 'Type',
@@ -105,9 +70,6 @@
     Language: 'Language',
     Username: 'Username',
     Password: 'Password',
-    SignIn: 'Sign in',
-    NewUserQuestion: 'New user?',
-    Register: 'Register',
     LastUpdated: 'Last updated',
     Created: 'Created',
     DisplayNameEn: 'Display name (en)',
@@ -119,10 +81,15 @@
     Save: 'Save',
     AddFolder: 'Add folder',
     AddContent: 'Add content',
-    LastUpdted: 'Last updated',
     CreateNew: 'Create new',
-    // inject:translations
-    // endinject
+    CreateFolder: 'Create folder',
+    
+    ForceNewPassword: 'Force new password',
+VERIFIED: 'Verified',
+    NewUserQuestion: 'New user?',
+Register: 'Register',
+    // inject:translations 
+   // endinject
   };
 
   global.dm = global.dm || {};
