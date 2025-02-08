@@ -203,7 +203,7 @@
             },
             "vercel": {
               "index": {
-                "input": "src/index.dev.html",
+                "input": "src/placeholder.html",
                 "output": "index.html"
               },
               "outputPath": {
@@ -213,7 +213,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.vercel.ts"
                 }
               ],
               "optimization": {
@@ -256,9 +256,19 @@
               ],
               "styles": [
                 {
-                  "input": "src/assets/css/dmart.css",
+                  "input": "src/assets/css/dmart.general.css",
                   "bundleName": "styles",
-                  "inject": true
+                  "inject": false
+                },
+                {
+                  "input": "src/assets/css/dmart.critical.css",
+                  "bundleName": "critical",
+                  "inject": false
+                },
+                {
+                  "input": "src/assets/css/dmart.rtl.css",
+                  "bundleName": "styles.rtl",
+                  "inject": false
                 }
               ],
               "budgets": [
@@ -269,8 +279,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "5kB",
+                  "maximumError": "6kB"
                 }
               ]
             }

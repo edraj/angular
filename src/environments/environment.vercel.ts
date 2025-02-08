@@ -3,7 +3,7 @@
 
 export const environment = {
     production: true,
-    vercel: false,
+    vercel: true,
     apiRoot: 'https://api.website.com',
     localConfig: 'localdata/config.prod.json'
 

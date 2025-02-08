@@ -14,7 +14,8 @@ export const Config = {
   },
   Res: {
     languages: [{ name: 'en', display: 'English' }, { name: 'ar', display: 'عربي' }],
-    defaultLanguage: 'en'
+    defaultLanguage: 'en',
+    cookieName: 'dm-lang'
   },
   Auth: {
     userAccessKey: 'dmart.user',

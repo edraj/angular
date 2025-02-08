@@ -21,7 +21,7 @@
         <dt>{{'Language' | translate:'Language'}}</dt>
         <dd>
           {{ selectedLanguage }}
-          (<a [href]="changeLanguage()">switch to {{ otherLanguage.display }}</a>)</dd>
+          (<a [href]="changeLanguage()" (click)="switchLanguage()">switch to {{ otherLanguage.display }}</a>)</dd>
       </dl>
     </div>
 </div>

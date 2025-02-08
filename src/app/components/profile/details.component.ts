@@ -36,11 +36,33 @@ export class ProfileDetailsComponent implements OnInit {
 
     // the other language:
     const lang = this.otherLanguage.name;
-    if (environment.production) {
+    if (environment.production && !environment.vercel) {
       return `/switchlang?lang=${lang}&red=${this.authState.redirectUrl}`;
     }
     _attn(lang, 'Language change is disabled in development mode');
     return '';
   }
 
+  // for web only, like vercel, reload with new cookie
+  switchLanguage() {
+    const lang = this.otherLanguage.name;
+
+    if (environment.vercel) {
+      // for netlify set nf_lang
+      this.setCookie(lang, Config.Res.cookieName, 365);
+      window.location.reload();
+
+    }
+
+  }
+  private setCookie(value: string, key: string, expires: number) {
+
+    let cookieStr = encodeURIComponent(key) + '=' + encodeURIComponent(value) + ';';
+    const dtExpires = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
+
+    cookieStr += 'expires=' + dtExpires.toUTCString() + ';';
+    cookieStr += 'path=/;';
+
+    document.cookie = cookieStr;
+  }
 }
