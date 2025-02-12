@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Config } from '../config';
 import { IList, IListOptions, ListOptions } from '../models/list.model';
 import { IResource, Resource } from '../models/resource.model';
-import { GetParamsAsString, uuid } from '../utils/common';
+import { GetParamsAsString } from '../utils/common';
 
 
 @Injectable({ providedIn: 'root' })
@@ -53,7 +53,7 @@ export class ResourceService {
     if (valvet) {
       return this._http.post(Config.API.space.create, data).pipe(
         map((response: any) => {
-          return { ...resource, id: uuid() };
+          return { ...resource, ...Resource.NewInstanceFromResponse(response) };
         })
       );
     }

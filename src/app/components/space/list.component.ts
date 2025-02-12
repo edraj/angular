@@ -34,12 +34,7 @@ export class SpaceListComponent implements OnInit {
       data: { mode: { forNew: true } },
       onclose: (res) => {
         if (res) {
-          this.spaceListState.Create(res).subscribe({
-            next: () => {
-              // update spaces
-              //toast me?
-            }
-          });
+          this.spaceListState.Create(res).subscribe();
         }
       }
     });

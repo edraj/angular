@@ -67,6 +67,7 @@ export class ResourceListState extends ListStateService<IResourceNode> {
       this.editItem({ ...resource, expanded: !resource.expanded });
     }
   }
+  // add resourrce isnt it?
   AddFolder(resource: IResourceNode, path: string) {
     // find the parentId from path
     // space + type + path, the type is always a folder, space is in resource
@@ -74,6 +75,10 @@ export class ResourceListState extends ListStateService<IResourceNode> {
     if (_parent && _parent.populated) {
       // if not poulated, let server do this
       this.addItem({ ...resource, parentId: _parent.id, expanded: false, populated: false });
+    }
+    // if root, add with parent id space
+    if (path === '') {
+      this.addItem({ ...resource, parentId: resource.space, expanded: false, populated: false });
     }
   }
   DeleteFolder(resource: IResourceNode) {

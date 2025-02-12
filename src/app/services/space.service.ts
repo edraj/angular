@@ -45,14 +45,16 @@ export class SpaceService {
 
 
 
-  CreateSpace(space: Partial<IResource>) {
+  CreateSpace(space: Partial<IResource>): Observable<IResource> {
     return this.resourceService.CreateResource({
       type: EnumResourceType.SPACE,
-      displayname: space.displayname,
+      // displayname: space.displaynameValue[Res.language],
+      displaynameValue: space.displaynameValue,
       shortname: space.shortname,
       space: space.shortname,
       subpath: '/',
-      description: space.description
+      // description: space.descriptionValue[Res.language],
+      descriptionValue: space.descriptionValue
     }, true);
   }
 
@@ -63,10 +65,12 @@ export class SpaceService {
     return this.resourceService.SaveResource({
       type: EnumResourceType.SPACE,
       displayname: space.displayname,
+      displaynameValue: space.displaynameValue,
       shortname: space.shortname,
       space: space.shortname,
       subpath: '/',
       description: space.description,
+      descriptionValue: space.descriptionValue,
       id: space.id
     });
   }

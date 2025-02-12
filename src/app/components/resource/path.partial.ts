@@ -30,12 +30,12 @@ export class ResourcePathPartial implements OnInit {
     //
   }
 
-  createFolder(path: IPath, type: EnumResourceType) {
+  create(path: IPath, type: EnumResourceType) {
     // need to know where im current at, from the state or from url
     this.dialog.open(ResourceFormDialog, {
-      title: Res.Get('CreateFolder'),
+      title: Res.Get('Create_' + type),
       css: 'modal-half-screen animate fromend',
-      data: { type },
+      data: { type, mode: {forNew: true} },
       onclose: (resource) => {
         if (resource) {
           // need to find a way to add to resources

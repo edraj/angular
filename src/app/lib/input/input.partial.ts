@@ -1,11 +1,9 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Input, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
 import { InputDirective } from './input.directive';
 
 @Component({
   selector: 'cr-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: 'input.css',
-  encapsulation: ViewEncapsulation.None,
   template: `
     <div class="{{ cssPrefix }}-field {{ typeCss }}" [class.cr-invalid-form]="invalidForm">
       <label class="cr-label" for="{{for}}">{{ placeholder }}</label>

@@ -11,10 +11,10 @@ import { IResourceNode, ResourceListState } from './tree.state';
     template: `
       <ul class="alist lbreath breath" *ngIf="nodes?.length">
         <li *ngFor="let item of nodes">
-        <dm-resource-card [resource]="item" (onSelect)="select(item)" (onToggle)="toggle(item)"></dm-resource-card>
+        <dm-resource-card [resource]="item" (onSelect)="select(item)" (onDelete)="delete(item)" (onToggle)="toggle(item)" ></dm-resource-card>
           @if(item.expanded) {
             @let children = GetChildren(item) | async;
-            <dm-resource-nodes [space]="space" [nodes]="children" ></dm-resource-nodes>
+            <dm-resource-nodes [space]="space" [nodes]="children" (onDelete)="delete(item)" ></dm-resource-nodes>
           }
         </li>
       </ul>
@@ -43,6 +43,11 @@ export class ResourceNodesPartial implements OnInit {
     // route
     this.router.navigateByUrl(`/spaces/${resource.path}`);
   }
+  delete(resource: IResourceNode) {
+    // delete
+
+  }
+
   toggle(resource: IResourceNode) {
     // nothing to toggle if not folder
     if (resource.type === EnumResourceType.FOLDER) {

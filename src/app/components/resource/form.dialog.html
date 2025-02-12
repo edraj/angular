@@ -1,60 +1,51 @@
-<form [formGroup]="resourceForm" (ngSubmit)="saveSpace()">
+<form [formGroup]="resourceForm" (ngSubmit)="saveResource()">
 
-  <cr-input placeholder="{{'Display name (en)' | translate:'DisplayNameEn'}}">
-    <input
-      type="text"
-      class="w100"
-      id="displayname"
-      crinput
-      formControlName="displayname"
-      [required]="true"
-    />
-  </cr-input>
-  <cr-input placeholder="{{'Shortname' | translate:'Shortname'}}">
-    <input
-      type="text"
-      class="w100"
-      id="shortname"
-      crinput
-      formControlName="shortname"
-      [required]="true"
-    />
+  <div class="spaced" *ngIf="!data.mode?.forNew">
+    <div class="f6 light">{{'Shortname' | translate:'Shortname'}}</div>
+    TODO: edit
+  </div>
+  <cr-input *ngIf="data.mode?.forNew" placeholder="{{'Shortname' | translate:'Shortname'}}"
+    error="Required with no spaces">
+    <input type="text" class="w100" id="shortname" crinput formControlName="shortname" crpattern="shortname"
+      [required]="true" />
     <ng-container helptext>{{'No spacecs allowed' | translate:'NoSpacesAllowed'}}</ng-container>
   </cr-input>
-  <cr-input placeholder="{{'Description (en)' | translate:'DescriptionEn'}}">
-    <input
-      type="text"
-      class="w100"
-      id="description"
-      crinput
-      formControlName="description"
-      [required]="false"
-    />
-  </cr-input>
+
+  <div formGroupName="displaynameValue" class="row-spaced spaced">
+
+    @for (lang of supportedLanguages; track $index) {
+
+    <cr-input class="col c-6" placeholder="{{'Display name' | translate:'DisplayName'}}  ({{lang.display}})">
+      <input type="text" class="w100" id="displayname{{ lang.name}}" crinput formControlName="{{lang.name}}"
+        [required]="true" />
+    </cr-input>
+    }
+
+  </div>
+
+  <div class="row-spaced" formGroupName="descriptionValue">
+
+    @for (lang of supportedLanguages; track $index) {
+
+    <cr-input class="col c-6" placeholder="{{'Description' | translate:'Description'}} ({{ lang.display }})">
+      <input type="text" class="w100" id="description{{ lang.name }}" crinput formControlName="{{lang.name}}"
+        [required]="false" />
+    </cr-input>
+    }
+
+
+  </div>
+
   @if (data.type !== 'folder') {
-    <cr-input placeholder="{{'Content type' | translate:'ContentType'}}">
-      <input
-        type="text"
-        class="w100"
-        id="contenttype"
-        crinput
-        formControlName="contentType"
-        [required]="true"
-      />
-    </cr-input>
-    <cr-input placeholder="{{'Body' | translate:'Body'}}">
-      <input
-        type="text"
-        class="w100"
-        id="body"
-        crinput
-        formControlName="body"
-        [required]="false"
-      />
-    </cr-input>
+  <cr-input placeholder="{{'Content type' | translate:'ContentType'}}">
+    <input type="text" class="w100" id="contenttype" crinput formControlName="contentType" [required]="true" />
+  </cr-input>
+  <cr-input placeholder="{{'Body' | translate:'Body'}}">
+    <input type="text" class="w100" id="body" crinput formControlName="body" [required]="false" />
+  </cr-input>
   }
 
 
-<button class="btn-rev" type="submit" >{{'Save' | translate:'Save'}}</button>
+  <button class="btn-rev" type="submit">{{'Save' | translate:'Save'}}</button>
 
 </form>

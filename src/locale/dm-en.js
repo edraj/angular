@@ -72,24 +72,24 @@
     Password: 'Password',
     LastUpdated: 'Last updated',
     Created: 'Created',
-    DisplayNameEn: 'Display name (en)',
     Shortname: 'Shortname',
     NoSpacesAllowed: 'No spacecs allowed',
-    DescriptionEn: 'Description (en)',
+    Description: 'Description',
     ContentType: 'Content type',
     Body: 'Body',
     Save: 'Save',
     AddFolder: 'Add folder',
     AddContent: 'Add content',
     CreateNew: 'Create new',
-    CreateFolder: 'Create folder',
-    
+    Create_folder: 'Create folder',
+    Create_content: 'Create content',
+
     ForceNewPassword: 'Force new password',
-VERIFIED: 'Verified',
+    VERIFIED: 'Verified',
     NewUserQuestion: 'New user?',
-Register: 'Register',
-    // inject:translations 
-   // endinject
+    Register: 'Register',
+    // inject:translations
+    // endinject
   };
 
   global.dm = global.dm || {};

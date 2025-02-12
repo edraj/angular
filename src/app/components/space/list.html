@@ -9,8 +9,8 @@
           @for (item of spaces; track $index) {
           <li>
             <div class="card">
-              <div>
-                <a class="weight-bold" routerLink="/spaces/{{ item.shortname }}/folder">{{ item.displayname }}</a>
+              <div class="a" routerLink="/spaces/{{ item.shortname }}/folder">
+                <span class="weight-bold" >{{ item.displayname }}</span>
                 <div class="smaller light">{{ item.shortname }} {{ item.description }}</div>
               </div>
               <div class="tail smaller">

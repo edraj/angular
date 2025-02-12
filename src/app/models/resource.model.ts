@@ -1,6 +1,6 @@
 import { makeDate } from '../utils/common';
 import { DataList, IList, IListOptions } from './list.model';
-import { Translation } from './translation.model';
+import { ITranslation, Translation } from './translation.model';
 
 export enum EnumResourceType {
   FOLDER = 'folder',
@@ -37,7 +37,6 @@ export interface IResource {
   updated?: Date;
   isActive?: boolean;
   tags?: string[];
-  description?: string;
   body?: any;
   contentType?: string;  // json, html...
   type?: EnumResourceType;
@@ -45,9 +44,14 @@ export interface IResource {
   subpath?: string;
   contentPath?: string;
   shortname?: string;
-  displayname?: string;
   space?: string;
   path?: string;
+
+  description?: string;
+  displayname?: string;
+  // for eding, bring back all languages
+  displaynameValue?: ITranslation; // en: '', ar: ''
+  descriptionValue?: ITranslation;
 }
 
 
@@ -70,6 +74,8 @@ export class Resource {
       tags: resource.tags,
       displayname: Translation.MapLanguage(resource.displayname) || resource.shortname, // calculate per language
       description: Translation.MapLanguage(resource.description),
+      displaynameValue: resource.displayname,
+      descriptionValue: resource.description,
       body: resource.payload?.body,
       contentType: resource.payload?.content_type, // TODO: Enum
       subpath: _subpath, // not needed, this or path
@@ -144,14 +150,8 @@ export class Resource {
             //   english,
             //   arabic
             // ],
-            displayname: {
-              en: resource.displayname,
-              ar: resource.displayname
-            },
-            description: {
-              en: resource.description,
-              ar: resource.description
-            },
+            displayname: resource.displaynameValue, // TODO: proper mapping
+            description: resource.descriptionValue,
             relationships: [],
             ...payload // check if this can be empty
           }
